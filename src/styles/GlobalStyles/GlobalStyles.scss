@@ -1,0 +1,58 @@
+.primary-text-color {
+    color: #495057 !important;
+}
+.secondary-text-color {
+    color: #7269ef !important;
+}
+.action-text-color {
+    color: #7a7f9a !important;
+}
+.primary-bg-color {
+    background-color: #f5f7fb;
+}
+.text-bg-color {
+    background-color: #f7f7ff;
+}
+.tooltip {
+    position: absolute;
+    font-size: 12px;
+    padding: 8px;
+    color: #fff !important;
+    background-color: #333 !important;
+    white-space: nowrap;
+    display: none;
+}
+.placement-top {
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.placement-right {
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+}
+.chatvia-link {
+    text-decoration: none;
+}
+.chatvia-container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.chatvia-navBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 75px;
+    padding: 20px 0;
+    box-shadow: 0 0 3px 0.1px #ccc;
+    background-color: #fff;
+}
+.chatvia-navBar-infor {
+    width: 380px;
+}
