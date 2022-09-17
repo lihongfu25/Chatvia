@@ -19,6 +19,7 @@ import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
 import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import PhotoSizeSelectActualOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActualOutlined";
+import { Message } from "../Message";
 import SendIcon from "@mui/icons-material/Send";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
 
@@ -74,6 +75,140 @@ const funcBtns = [
         icon: <PhotoSizeSelectActualOutlinedIcon />,
     },
 ];
+
+const messages = [
+    {
+        id: 1,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "hello",
+                time: "20:00",
+            },
+            {
+                desc: "hello helo",
+                time: "20:00",
+            },
+        ],
+    },
+    {
+        id: 2,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "Hello HelloHello Hello Hello Hello Hello Hello Hello HelloHello HelloHello Hello Hello Hello Hello Hello Hello Hello",
+                time: "Thứ sáu 20:00",
+            },
+        ],
+    },
+    {
+        id: 3,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "hello",
+                time: "20:00",
+            },
+            {
+                desc: "hello helo",
+                time: "20:00",
+            },
+        ],
+    },
+    {
+        id: 4,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "Hello HelloHello Hello Hello Hello Hello Hello Hello HelloHello HelloHello Hello Hello Hello Hello Hello Hello Hello",
+                time: "Thứ sáu 20:00",
+            },
+        ],
+    },
+    {
+        id: 5,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "hello",
+                time: "20:00",
+            },
+            {
+                desc: "hello helo",
+                time: "20:00",
+            },
+        ],
+    },
+    {
+        id: 6,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "Hello HelloHello Hello Hello Hello Hello Hello Hello HelloHello HelloHello Hello Hello Hello Hello Hello Hello Hello",
+                time: "Thứ sáu 20:00",
+            },
+        ],
+    },
+    {
+        id: 7,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "hello",
+                time: "20:00",
+            },
+            {
+                desc: "hello helo",
+                time: "20:00",
+            },
+        ],
+    },
+    {
+        id: 8,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "Hello HelloHello Hello Hello Hello Hello Hello Hello HelloHello HelloHello Hello Hello Hello Hello Hello Hello Hello",
+                time: "Thứ sáu 20:00",
+            },
+        ],
+    },
+    {
+        id: 9,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "Hello HelloHello Hello Hello Hello Hello Hello Hello HelloHello HelloHello Hello Hello Hello Hello Hello Hello Hello",
+                time: "Thứ sáu 20:00",
+            },
+        ],
+    },
+    {
+        id: 10,
+        photoURL:
+            "https://1hot.vn/wp-content/uploads/2020/10/phong-canh-dep-nhat-the-gioi-4.jpg",
+        content: [
+            {
+                desc: "hello",
+                time: "20:00",
+            },
+            {
+                desc: "hello helo",
+                time: "20:00",
+            },
+        ],
+    },
+];
+
 const ChatBox = () => {
     const [openSearch, setOpenSearch] = React.useState(false);
     const [search, setSearch] = React.useState("");
@@ -151,7 +286,7 @@ const ChatBox = () => {
                         >
                             <StyledInput
                                 autoFocus
-                                placeholder='Enter your keyword'
+                                placeholder='Search'
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 sx={{
@@ -184,13 +319,15 @@ const ChatBox = () => {
                 </Box>
             </Box>
             <Divider />
-            <Box
-                className='conversation'
-                sx={{
-                    flexGrow: 1,
-                    overflowY: "scroll",
-                }}
-            ></Box>
+            <Box className='conversation'>
+                {messages.map((message, i) => (
+                    <Message
+                        key={i}
+                        message={message}
+                        className={message.id % 2 === 0 ? "owner" : ""}
+                    />
+                ))}
+            </Box>
             <Divider />
             <Box
                 sx={{

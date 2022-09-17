@@ -55,4 +55,97 @@
 }
 .chatvia-navBar-infor {
     width: 380px;
+    box-sizing: border-box;
+}
+//
+.conversation {
+    padding: 20px;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+.conversation::-webkit-scrollbar {
+    display: none;
+}
+.message {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    .message-info {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 6px;
+    }
+    .message-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: 60%;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .message-content .row {
+        max-width: 85%;
+        position: relative;
+        border-radius: 8px 18px 18px 8px;
+        padding: 8px 12px;
+        background-color: #f1f1f1;
+        color: #495057;
+    }
+    .message-content .row:not(:last-child) {
+        margin-bottom: 2px;
+    }
+    .message-content .row p:hover .message-time {
+        display: inline-block;
+    }
+    .message-time {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(100%, -50%);
+        font-size: 12px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        color: #f5f5f5;
+        background-color: #495057;
+        white-space: nowrap;
+        display: none;
+    }
+    .message-option:hover {
+        opacity: 1;
+    }
+    .message-option {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(100%, -50%);
+        font-size: 20px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        opacity: 0;
+    }
+}
+.message.owner {
+    justify-content: flex-end;
+    .message-info {
+        display: none;
+    }
+    .message-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .message-content .row {
+        border-radius: 18px 8px 8px 18px;
+        background-color: #1976d2;
+        color: #f1f1f1;
+    }
+    .message-option,
+    .message-time {
+        left: 0;
+        right: unset;
+        transform: translate(-100%, -50%);
+    }
 }
