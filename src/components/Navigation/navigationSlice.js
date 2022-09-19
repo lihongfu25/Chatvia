@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export default createSlice({
+export const navigationSlice = createSlice({
     name: "navigation",
-    initialState: { value: "Chats" },
+    initialState: { currentTab: "Chats" },
     reducers: {
         navigationChange: (state, action) => {
-            state.value = action.payload;
+            state.currentTab = action.payload;
         },
     },
 });
+export const { navigationChange } = navigationSlice.actions;
+export default navigationSlice.reducer;

@@ -1,5 +1,5 @@
 import React from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Avatar, Box, ButtonBase } from "@mui/material";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
@@ -10,30 +10,30 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 // import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import { ButtonWithTooltip } from "../ButtonWithTooltip";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
+const navButtons = [
+    {
+        value: "Profile",
+        icon: PersonOutlineOutlinedIcon,
+    },
+    {
+        value: "Chats",
+        icon: TextsmsOutlinedIcon,
+    },
+    {
+        value: "Groups",
+        icon: PeopleOutlinedIcon,
+    },
+    {
+        value: "Contacts",
+        icon: ConnectWithoutContactOutlinedIcon,
+    },
+    {
+        value: "Settings",
+        icon: SettingsOutlinedIcon,
+    },
+];
 const Navigation = () => {
-    const navButtons = [
-        {
-            value: "Profile",
-            icon: PersonOutlineOutlinedIcon,
-        },
-        {
-            value: "Chats",
-            icon: TextsmsOutlinedIcon,
-        },
-        {
-            value: "Groups",
-            icon: PeopleOutlinedIcon,
-        },
-        {
-            value: "Contacts",
-            icon: ConnectWithoutContactOutlinedIcon,
-        },
-        {
-            value: "Settings",
-            icon: SettingsOutlinedIcon,
-        },
-    ];
-
+    const currentTab = useSelector((state) => state.navigation.currentTab);
     return (
         <div className='chatvia-navBar'>
             <ButtonBase disableTouchRipple href='/'>
@@ -52,6 +52,11 @@ const Navigation = () => {
                 {navButtons.map((navButton, i) => (
                     <ButtonWithTooltip
                         key={i}
+                        className={
+                            currentTab === navButton.value
+                                ? "chatvia-navBar-currentTab"
+                                : ""
+                        }
                         value={navButton.value}
                         icon={navButton.icon}
                     />

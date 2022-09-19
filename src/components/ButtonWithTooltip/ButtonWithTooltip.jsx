@@ -1,18 +1,24 @@
 // import React from "react";
 import { useDispatch } from "react-redux/es/exports";
 import { Paper, ButtonBase } from "@mui/material";
-import navigationSlice from "../Navigation/navigationSlice";
+import { navigationChange } from "../Navigation/navigationSlice";
 
-const ButtonWithTooltip = ({ value, icon, placement = "top", sx }) => {
+const ButtonWithTooltip = ({
+    value,
+    icon,
+    className,
+    placement = "top",
+    sx,
+}) => {
     const Icon = icon;
     const dispatch = useDispatch();
 
     const handleChangeNavigation = () => {
-        console.log(value);
-        dispatch(navigationSlice.actions.navigationChange(value));
+        dispatch(navigationChange(value));
     };
     return (
         <ButtonBase
+            className={className}
             sx={{
                 fontSize: 30,
                 p: 1.5,

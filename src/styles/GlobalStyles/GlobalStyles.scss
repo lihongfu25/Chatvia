@@ -57,6 +57,12 @@
     width: 380px;
     box-sizing: border-box;
 }
+.chatvia-navBar-currentTab {
+    background-color: #f5f7fb !important;
+    & svg {
+        color: #7269ef !important;
+    }
+}
 //
 .conversation {
     padding: 20px;

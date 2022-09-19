@@ -1,11 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { styled } from "@mui/material/styles";
 import {
     Avatar,
     Box,
     Divider,
     Typography,
-    Badge,
     IconButton,
     Button,
     InputBase,
@@ -20,37 +20,9 @@ import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfi
 import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import PhotoSizeSelectActualOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActualOutlined";
 import { Message } from "../Message";
+import { ActiveStatus } from "../ActiveStatus";
 import SendIcon from "@mui/icons-material/Send";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
-
-const StyledBadge = styled(Badge)(({ theme }) => ({
-    "& .MuiBadge-badge": {
-        backgroundColor: "#44b700",
-        color: "#44b700",
-        boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-        "&::after": {
-            position: "absolute",
-            top: -1,
-            left: -1,
-            width: "100%",
-            height: "100%",
-            borderRadius: "50%",
-            animation: "ripple 1.2s infinite ease-in-out",
-            border: "1px solid currentColor",
-            content: '""',
-        },
-    },
-    "@keyframes ripple": {
-        "0%": {
-            transform: "scale(.8)",
-            opacity: 1,
-        },
-        "100%": {
-            transform: "scale(2.4)",
-            opacity: 0,
-        },
-    },
-}));
 
 const StyledInput = styled(InputBase)({
     width: "100%",
@@ -210,6 +182,8 @@ const messages = [
 ];
 
 const ChatBox = () => {
+    const isActive = useSelector((state) => state.activeStatus.isActive);
+
     const [openSearch, setOpenSearch] = React.useState(false);
     const [search, setSearch] = React.useState("");
     const [message, setMessage] = React.useState("");
@@ -252,17 +226,20 @@ const ChatBox = () => {
                     >
                         Lê Hồng Phú
                     </Typography>
-                    <StyledBadge
-                        overlap='circular'
-                        anchorOrigin={{
-                            vertical: "bottom",
-                            horizontal: "right",
-                        }}
-                        sx={{
-                            marginLeft: 1.5,
-                        }}
-                        variant='dot'
-                    ></StyledBadge>
+                    {isActive && (
+                        <ActiveStatus
+                            isRipple={true}
+                            overlap='circular'
+                            anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "right",
+                            }}
+                            sx={{
+                                marginLeft: 1.5,
+                            }}
+                            variant='dot'
+                        ></ActiveStatus>
+                    )}
                 </Box>
                 <Box
                     sx={{
