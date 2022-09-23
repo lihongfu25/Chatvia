@@ -19,8 +19,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
         },
     },
 }));
+
 const ActiveStatus = ({
-    children,
     isRipple = false,
     anchorOrigin = { vertical: "bottom", horizontal: "right" },
     sx,
@@ -34,13 +34,15 @@ const ActiveStatus = ({
                 anchorOrigin={anchorOrigin}
                 sx={sx}
                 {...props}
-            >
-                {children}
-            </StyledBadge>
+            ></StyledBadge>
         );
     else
         return (
             <StyledBadge
+                variant='dot'
+                overlap='circular'
+                anchorOrigin={anchorOrigin}
+                {...props}
                 sx={{
                     ...sx,
                     ".MuiBadge-badge::after": {
@@ -56,10 +58,8 @@ const ActiveStatus = ({
                     },
                 }}
                 {...props}
-            >
-                {children}
-            </StyledBadge>
+            ></StyledBadge>
         );
 };
 
-export default ActiveStatus;
+export default React.memo(ActiveStatus);

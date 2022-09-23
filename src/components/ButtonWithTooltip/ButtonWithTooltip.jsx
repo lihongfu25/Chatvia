@@ -1,21 +1,15 @@
-// import React from "react";
-import { useDispatch } from "react-redux/es/exports";
+import React from "react";
 import { Paper, ButtonBase } from "@mui/material";
-import { navigationChange } from "../Navigation/navigationSlice";
 
 const ButtonWithTooltip = ({
     value,
     icon,
     className,
-    placement = "top",
+    placement = "right",
     sx,
+    onClick,
 }) => {
     const Icon = icon;
-    const dispatch = useDispatch();
-
-    const handleChangeNavigation = () => {
-        dispatch(navigationChange(value));
-    };
     return (
         <ButtonBase
             className={className}
@@ -30,7 +24,7 @@ const ButtonWithTooltip = ({
                 },
                 ...sx,
             }}
-            onClick={handleChangeNavigation}
+            onClick={onClick}
         >
             <Icon
                 fontSize='inherit'
@@ -43,6 +37,7 @@ const ButtonWithTooltip = ({
                 elevation={1}
                 sx={{
                     fontFamily: "Roboto",
+                    zIndex: 100,
                 }}
             >
                 {value}
@@ -51,4 +46,4 @@ const ButtonWithTooltip = ({
     );
 };
 
-export default ButtonWithTooltip;
+export default React.memo(ButtonWithTooltip);

@@ -1,11 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export default createSlice({
+export const userSlice = createSlice({
     name: "user",
-    initialState: "",
+    initialState: {
+        id: "1",
+        name: "Lê Hồng Phú",
+        email: "lehongphudhcnhn@gmail.com",
+        address: "Hà Nội, VN",
+    },
     reducers: {
-        tokenChange: (state, action) => {
-            state = action.payload;
+        userChangeName: (state, action) => {
+            state.name = action.payload;
+        },
+        userChangeEmail: (state, action) => {
+            state.email = action.payload;
+        },
+        userChangeAddress: (state, action) => {
+            state.address = action.payload;
         },
     },
 });
+export const { userChangeName, userChangeEmail, userChangeAddress } =
+    userSlice.actions;
+export default userSlice.reducer;

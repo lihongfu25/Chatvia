@@ -1,15 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 import { Navigation } from "../../components/Navigation";
 import { Profile } from "../../components/Profile";
+import { Chats } from "../../components/Chats";
+import { Groups } from "../../components/Groups";
+import { Contacts } from "../../components/Contacts";
+import { Settings } from "../../components/Settings";
+
 import { ChatBox } from "../../components/ChatBox";
 
 const MainLayout = () => {
+    const currentTab = useSelector((state) => state.navigation.currentTab);
     return (
         <Box className='chatvia-container primary-bg-color'>
             <Navigation />
             <Box className='chatvia-navBar-infor'>
-                <Profile />
+                {currentTab === "Profile" && <Profile />}
+                {currentTab === "Chats" && <Chats />}
+                {currentTab === "Groups" && <Groups />}
+                {currentTab === "Contacts" && <Contacts />}
+                {currentTab === "Settings" && <Settings />}
             </Box>
             <ChatBox />
         </Box>

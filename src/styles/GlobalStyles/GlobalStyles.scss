@@ -35,6 +35,9 @@
 .chatvia-link {
     text-decoration: none;
 }
+.chatvia-unScrollBar::-webkit-scrollbar {
+    display: none;
+}
 .chatvia-container {
     display: flex;
     position: fixed;
@@ -56,6 +59,10 @@
 .chatvia-navBar-infor {
     width: 380px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    overflow: hidden;
 }
 .chatvia-navBar-currentTab {
     background-color: #f5f7fb !important;
@@ -64,14 +71,11 @@
     }
 }
 //
-.conversation {
+.chatvia-chatBox-content {
     padding: 20px;
     flex-direction: column;
     flex-grow: 1;
     overflow-y: scroll;
-}
-.conversation::-webkit-scrollbar {
-    display: none;
 }
 .message {
     display: flex;
@@ -154,4 +158,10 @@
         right: unset;
         transform: translate(-100%, -50%);
     }
+}
+.conversations {
+    flex-direction: column;
+    overflow-y: scroll;
+    flex-grow: 1;
+    margin-top: 12px;
 }

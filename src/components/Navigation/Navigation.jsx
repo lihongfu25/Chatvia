@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Avatar, Box, ButtonBase } from "@mui/material";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
@@ -7,8 +7,10 @@ import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ConnectWithoutContactOutlinedIcon from "@mui/icons-material/ConnectWithoutContactOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-// import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import { ButtonWithTooltip } from "../ButtonWithTooltip";
+import { navigationChange } from "../Navigation/navigationSlice";
+import { modeChange } from "../../redux/store/modeSlice";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
 const navButtons = [
     {
@@ -34,6 +36,17 @@ const navButtons = [
 ];
 const Navigation = () => {
     const currentTab = useSelector((state) => state.navigation.currentTab);
+    const currentMode = useSelector((state) => state.mode.currentMode);
+
+    const dispatch = useDispatch();
+
+    const handleChangeNavBar = (value) => {
+        dispatch(navigationChange(value));
+    };
+    const handleChangeMode = () => {
+        dispatch(modeChange());
+    };
+
     return (
         <div className='chatvia-navBar'>
             <ButtonBase disableTouchRipple href='/'>
@@ -59,6 +72,7 @@ const Navigation = () => {
                         }
                         value={navButton.value}
                         icon={navButton.icon}
+                        onClick={() => handleChangeNavBar(navButton.value)}
                     />
                 ))}
             </Box>
@@ -74,9 +88,13 @@ const Navigation = () => {
                 }}
             >
                 <ButtonWithTooltip
-                    placement='right'
                     value='Dark/ Light Mode'
-                    icon={DarkModeOutlinedIcon}
+                    icon={
+                        currentMode === "light"
+                            ? DarkModeOutlinedIcon
+                            : LightModeOutlinedIcon
+                    }
+                    onClick={handleChangeMode}
                     sx={{
                         marginBottom: 3,
                     }}

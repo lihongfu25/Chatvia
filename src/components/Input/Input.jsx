@@ -9,20 +9,22 @@ const StyledButton = styled(Button)({
     boxShadow: "none",
 });
 
-const Input = ({ value = "Lê Hồng Phú", label, isEdit }) => {
+const Input = ({ value = "", label, isEdit, onSubmit }) => {
     const [openEditor, setOpenEditor] = React.useState(false);
-    const [inputValue, setInputValue] = React.useState(value);
+    const [inputValue, setInputValue] = React.useState("");
 
     const iconEditRef = React.useRef();
 
     const handleOpenEditor = () => {
         iconEditRef.current.style.display = "none";
         setOpenEditor(true);
+        setInputValue(value);
     };
 
     const handleSubmit = () => {
         iconEditRef.current.style.display = "inline-block";
         setOpenEditor(false);
+        onSubmit(inputValue);
     };
 
     const handleClose = () => {
@@ -36,11 +38,13 @@ const Input = ({ value = "Lê Hồng Phú", label, isEdit }) => {
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
+                marginBottom: 1.5,
             }}
         >
             <label className='action-text-color' htmlFor={label}>
                 {label}
             </label>
+
             {!openEditor && (
                 <p
                     className='primary-text-color'
@@ -50,7 +54,7 @@ const Input = ({ value = "Lê Hồng Phú", label, isEdit }) => {
                         lineHeight: "32px",
                     }}
                 >
-                    {inputValue}
+                    {inputValue || value}
                 </p>
             )}
             {isEdit && (
@@ -70,7 +74,7 @@ const Input = ({ value = "Lê Hồng Phú", label, isEdit }) => {
                     <InputBase
                         className='primary-text-color'
                         autoFocus
-                        defaultValue={inputValue}
+                        value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         sx={{
                             marginTop: 0.5,
@@ -106,4 +110,4 @@ const Input = ({ value = "Lê Hồng Phú", label, isEdit }) => {
     );
 };
 
-export default Input;
+export default React.memo(Input);

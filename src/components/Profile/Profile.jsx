@@ -1,40 +1,154 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { styled } from "@mui/material/styles";
 import {
     Box,
     Typography,
     Menu,
     MenuItem,
+    InputBase,
     Divider,
     Switch,
     Accordion,
     AccordionSummary,
     AccordionDetails,
+    Button,
 } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { ActiveStatus } from "../ActiveStatus";
-import { activeStatusToggle } from "../ActiveStatus/activeStatusSlice";
+import {
+    activeStatusToggle,
+    activeStatusChange,
+} from "../ActiveStatus/activeStatusSlice";
+import {
+    userChangeName,
+    userChangeEmail,
+    userChangeAddress,
+} from "../../redux/store/userSlice";
 import { Input } from "../Input";
 import Avatar from "../../assets/img/DSC_0036-1.jpg";
+
+const getCurTime = () => {
+    let today = new Date();
+
+    const minute =
+        today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
+    let hour,
+        desc = "AM";
+    if (today.getHours() > 12) {
+        hour = today.getHours() - 12;
+        desc = "PM";
+    } else hour = today.getHours();
+
+    return (
+        today.getFullYear() +
+        "/" +
+        (today.getMonth() + 1) +
+        "/" +
+        today.getDate() +
+        " " +
+        hour +
+        ":" +
+        minute +
+        " " +
+        desc
+    );
+};
+
+const StyledSwitch = styled(Switch)(({ theme }) => ({
+    width: 28,
+    height: 16,
+    padding: 0,
+    display: "flex",
+    "&:active": {
+        "& .MuiSwitch-thumb": {
+            width: 15,
+        },
+        "& .MuiSwitch-switchBase.Mui-checked": {
+            transform: "translateX(9px)",
+        },
+    },
+    "& .MuiSwitch-switchBase": {
+        padding: 2,
+        "&.Mui-checked": {
+            transform: "translateX(12px)",
+            color: "#fff",
+            "& + .MuiSwitch-track": {
+                opacity: 1,
+                backgroundColor:
+                    theme.palette.mode === "dark" ? "#177ddc" : "#1890ff",
+            },
+        },
+    },
+    "& .MuiSwitch-thumb": {
+        boxShadow: "0 2px 4px 0 rgb(0 35 11 / 20%)",
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        transition: theme.transitions.create(["width"], {
+            duration: 200,
+        }),
+    },
+    "& .MuiSwitch-track": {
+        borderRadius: 16 / 2,
+        opacity: 1,
+        backgroundColor:
+            theme.palette.mode === "dark"
+                ? "rgba(255,255,255,.35)"
+                : "rgba(0,0,0,.25)",
+        boxSizing: "border-box",
+    },
+}));
+
 const Profile = () => {
+    const isActive = useSelector((state) => state.activeStatus.isActive);
+    const activeStatus = useSelector((state) => state.activeStatus.value);
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [actionState, setActionState] = React.useState(true);
+    const [showActiveStatus, setShowActiveStatus] = React.useState(isActive);
     const [edit, setEdit] = React.useState(false);
     const [expanded, setExpanded] = React.useState("about");
-    // const [customState, setCustomState] = React.useState("");
+    const [customStatus, setCustomStatus] = React.useState(false);
+    const [status, setStatus] = React.useState(activeStatus);
+    const [curTime, setCurTime] = React.useState(getCurTime());
 
-    const isActive = useSelector((state) => state.activeStatus.isActive);
+    React.useEffect(() => {
+        const timeInterval = setInterval(() => {
+            setCurTime(getCurTime());
+        }, 1000);
 
-    const dispatch = useDispatch();
+        return () => {
+            clearInterval(timeInterval);
+            console.log();
+        };
+    }, []);
+
+    React.useEffect(() => {
+        const handleListenKeyPress = (e) => {
+            if (e.key === "Enter") {
+                dispatch(activeStatusChange(status));
+                setCustomStatus(false);
+            }
+        };
+
+        if (customStatus)
+            window.addEventListener("keypress", handleListenKeyPress);
+
+        return () => {
+            window.removeEventListener("keypress", handleListenKeyPress);
+        };
+    }, [customStatus]);
 
     const handleOpenEdit = () => {
         setEdit(true);
         setAnchorEl(null);
     };
     const handleChangeStatus = (e) => {
-        setActionState(e.target.checked);
+        setShowActiveStatus(e.target.checked);
         setAnchorEl(null);
         dispatch(activeStatusToggle());
     };
@@ -43,23 +157,29 @@ const Profile = () => {
         setExpanded(isExpanded ? panel : false);
     };
 
+    const handleChangeName = (value) => {
+        dispatch(userChangeName(value));
+    };
+    const handleChangeEmail = (value) => {
+        dispatch(userChangeEmail(value));
+    };
+    const handleChangeAddress = (value) => {
+        dispatch(userChangeAddress(value));
+    };
+
     return (
-        <Box
-            sx={{
-                display: "flex",
-                flexDirection: "column",
-            }}
-        >
+        <>
             <Box
                 sx={{
                     p: 3,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
+                    position: "relative",
                 }}
             >
                 <Typography variant='h6' className='primary-text-color'>
-                    My Profile
+                    Profile
                 </Typography>
                 <MoreVertOutlinedIcon
                     fontSize='small'
@@ -74,10 +194,10 @@ const Profile = () => {
                     open={Boolean(anchorEl)}
                     onClose={() => setAnchorEl(null)}
                     sx={{
-                        left: "-181px",
+                        left: -201,
                         ".css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper":
                             {
-                                minWidth: "200px",
+                                minWidth: "220px",
                             },
                         "& .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root": {
                             fontSize: "16px",
@@ -91,15 +211,20 @@ const Profile = () => {
                             justifyContent: "space-between",
                         }}
                     >
-                        Active State
-                        <Switch
-                            checked={actionState}
+                        Active Status
+                        <StyledSwitch
+                            checked={showActiveStatus}
                             onChange={handleChangeStatus}
                         />
                     </MenuItem>
                     <Divider />
-                    <MenuItem onClick={() => setAnchorEl(null)}>
-                        Custom State
+                    <MenuItem
+                        onClick={() => {
+                            setCustomStatus(true);
+                            setAnchorEl(null);
+                        }}
+                    >
+                        Custom Status
                     </MenuItem>
                 </Menu>
             </Box>
@@ -131,23 +256,47 @@ const Profile = () => {
                 >
                     Lê Hồng Phú
                 </Typography>
-                {isActive && (
-                    <ActiveStatus
-                        anchorOrigin={{
-                            vertical: "top",
-                            horizontal: "left",
-                        }}
-                        sx={{
-                            "& .css-dd6pjh-MuiBadge-badge": {
-                                left: -16,
-                                top: "50%",
-                                transform: "translateY(-50%)",
-                            },
-                        }}
-                    >
-                        Active
-                    </ActiveStatus>
-                )}
+                <Box
+                    className='primary-text-color'
+                    sx={{
+                        display: "flex",
+                    }}
+                >
+                    {isActive && (
+                        <ActiveStatus
+                            anchorOrigin={{
+                                vertical: "top",
+                                horizontal: "left",
+                            }}
+                            sx={{
+                                "& .css-dd6pjh-MuiBadge-badge": {
+                                    left: -16,
+                                    top: "50%",
+                                    transform: "translateY(-50%)",
+                                },
+                            }}
+                        ></ActiveStatus>
+                    )}
+                    {customStatus === false ? (
+                        status
+                    ) : (
+                        <Box>
+                            <InputBase
+                                autoFocus
+                                placeholder='Enter status'
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value)}
+                                sx={{
+                                    marginLeft: 1.5,
+                                    backgroundColor: "#fff",
+                                    ".css-yz9k0d-MuiInputBase-input": {
+                                        paddingLeft: 1.5,
+                                    },
+                                }}
+                            />
+                        </Box>
+                    )}
+                </Box>
             </Box>
             <Divider />
             <Box
@@ -190,11 +339,43 @@ const Profile = () => {
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Input label='Name' isEdit={edit} />
+                        <Input
+                            label='Name'
+                            isEdit={edit}
+                            value={user.name}
+                            onSubmit={handleChangeName}
+                        />
+                        <Input
+                            label='Email'
+                            isEdit={edit}
+                            value={user.email}
+                            onSubmit={handleChangeEmail}
+                        />
+                        <Input label='Time' value={curTime} />
+                        <Input
+                            label='Location'
+                            isEdit={edit}
+                            value={user.address}
+                            onSubmit={handleChangeAddress}
+                        />
+                        {edit && (
+                            <Button
+                                variant='contained'
+                                disableElevation
+                                onClick={() => setEdit(false)}
+                                sx={{
+                                    padding: "2px 16px",
+                                    textTransform: "none",
+                                    marginLeft: 29,
+                                }}
+                            >
+                                Save
+                            </Button>
+                        )}
                     </AccordionDetails>
                 </Accordion>
             </Box>
-        </Box>
+        </>
     );
 };
 

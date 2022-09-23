@@ -191,10 +191,10 @@ const ChatBox = () => {
     return (
         <Box
             sx={{
-                flexGrow: 1,
                 backgroundColor: "#fff",
                 display: "flex",
                 flexDirection: "column",
+                flexGrow: 1,
             }}
         >
             <Box
@@ -229,11 +229,6 @@ const ChatBox = () => {
                     {isActive && (
                         <ActiveStatus
                             isRipple={true}
-                            overlap='circular'
-                            anchorOrigin={{
-                                vertical: "bottom",
-                                horizontal: "right",
-                            }}
                             sx={{
                                 marginLeft: 1.5,
                             }}
@@ -296,7 +291,7 @@ const ChatBox = () => {
                 </Box>
             </Box>
             <Divider />
-            <Box className='conversation'>
+            <Box className='chatvia-chatBox-content chatvia-unScrollBar'>
                 {messages.map((message, i) => (
                     <Message
                         key={i}
