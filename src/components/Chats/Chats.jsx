@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, InputBase, Typography } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Conversation } from "../Conversation";
+import { Conversation } from "./Conversation";
 const Chats = () => {
+    const [search, setSearch] = React.useState("");
     return (
         <>
             <Box sx={{ p: 3 }}>
@@ -21,7 +22,10 @@ const Chats = () => {
                 >
                     <SearchOutlinedIcon color='action' />
                     <InputBase
+                        fullWidth
                         placeholder='Search messages or users'
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                         sx={{
                             paddingLeft: 1.5,
                         }}

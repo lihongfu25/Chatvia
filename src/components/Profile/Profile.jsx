@@ -143,9 +143,16 @@ const Profile = () => {
         };
     }, [customStatus]);
 
+    const statusRef = React.useRef();
+
     const handleOpenEdit = () => {
         setEdit(true);
         setAnchorEl(null);
+    };
+    const handleCustomStatus = () => {
+        setCustomStatus(true);
+        setAnchorEl(null);
+        console.log(statusRef);
     };
     const handleChangeStatus = (e) => {
         setShowActiveStatus(e.target.checked);
@@ -218,12 +225,7 @@ const Profile = () => {
                         />
                     </MenuItem>
                     <Divider />
-                    <MenuItem
-                        onClick={() => {
-                            setCustomStatus(true);
-                            setAnchorEl(null);
-                        }}
-                    >
+                    <MenuItem onClick={handleCustomStatus}>
                         Custom Status
                     </MenuItem>
                 </Menu>
@@ -277,24 +279,23 @@ const Profile = () => {
                             }}
                         ></ActiveStatus>
                     )}
-                    {customStatus === false ? (
-                        status
+                    {customStatus === true ? (
+                        <InputBase
+                            ref={statusRef}
+                            autoFocus
+                            placeholder='Enter status'
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
+                            sx={{
+                                marginLeft: 1.5,
+                                backgroundColor: "#fff",
+                                ".css-yz9k0d-MuiInputBase-input": {
+                                    paddingLeft: 1.5,
+                                },
+                            }}
+                        />
                     ) : (
-                        <Box>
-                            <InputBase
-                                autoFocus
-                                placeholder='Enter status'
-                                value={status}
-                                onChange={(e) => setStatus(e.target.value)}
-                                sx={{
-                                    marginLeft: 1.5,
-                                    backgroundColor: "#fff",
-                                    ".css-yz9k0d-MuiInputBase-input": {
-                                        paddingLeft: 1.5,
-                                    },
-                                }}
-                            />
-                        </Box>
+                        status
                     )}
                 </Box>
             </Box>

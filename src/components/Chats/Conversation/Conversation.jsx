@@ -1,12 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Avatar, Box, Typography } from "@mui/material";
-import { ActiveStatus } from "../ActiveStatus";
-import avatar from "../../assets/img/DSC_0036-1.jpg";
+import { ActiveStatus } from "../../ActiveStatus";
+import avatar from "../../../assets/img/DSC_0036-1.jpg";
 const Conversation = ({ name, senderId, lastest, time, seen = false }) => {
     const isActive = useSelector((state) => state.activeStatus.isActive);
     const userId = useSelector((state) => state.user.id);
-    console.log(seen);
     return (
         <Box
             sx={{

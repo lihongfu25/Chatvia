@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const navigationSlice = createSlice({
     name: "navigation",
-    initialState: { currentTab: "Chats" },
+    initialState: { currentTab: "Groups" },
     reducers: {
         navigationChange: (state, action) => {
             state.currentTab = action.payload;

@@ -100,7 +100,7 @@ const Input = ({ value = "", label, isEdit, onSubmit }) => {
                         >
                             Save
                         </StyledButton>
-                        <StyledButton variant='contained' onClick={handleClose}>
+                        <StyledButton onClick={handleClose}>
                             Cancel
                         </StyledButton>
                     </Box>
