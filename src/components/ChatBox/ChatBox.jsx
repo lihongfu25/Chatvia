@@ -21,6 +21,7 @@ import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import PhotoSizeSelectActualOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActualOutlined";
 import { Message } from "../Message";
 import { ActiveStatus } from "../ActiveStatus";
+import { PrimaryButton } from "../PrimaryButton";
 import SendIcon from "@mui/icons-material/Send";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
 
@@ -331,7 +332,7 @@ const ChatBox = () => {
                         </IconButton>
                     </Tooltip>
                 ))}
-                <Button
+                <PrimaryButton
                     variant='contained'
                     endIcon={<SendIcon />}
                     disableElevation
@@ -341,7 +342,7 @@ const ChatBox = () => {
                     }}
                 >
                     Send
-                </Button>
+                </PrimaryButton>
             </Box>
         </Box>
     );

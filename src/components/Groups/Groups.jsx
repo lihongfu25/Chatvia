@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import {
     Box,
     Typography,
@@ -8,7 +9,6 @@ import {
     DialogContent,
     TextField,
     DialogActions,
-    Button,
     MenuItem,
     Avatar,
 } from "@mui/material";
@@ -16,7 +16,16 @@ import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import { GroupConversation } from "./GroupConversation";
+import { PrimaryButton } from "../PrimaryButton";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
+
+const StyledButton = styled(PrimaryButton)({
+    color: "#7269ef",
+    backgroundColor: "#fff",
+    ":hover": {
+        backgroundColor: "#f9f9f9",
+    },
+});
 
 const contacts = [
     {
@@ -53,7 +62,7 @@ const contacts = [
 
 const Groups = () => {
     const [search, setSearch] = React.useState("");
-    const [openCreateGroup, setOpenCreateGroup] = React.useState(true);
+    const [openCreateGroup, setOpenCreateGroup] = React.useState(false);
     const [groupName, setGroupName] = React.useState("");
     const [members, setMembers] = React.useState([]);
     const [memberFilter, setMemberFilter] = React.useState("");
@@ -169,7 +178,6 @@ const Groups = () => {
                         ))}
                         <InputBase
                             ref={searchMemberRef}
-                            autoFocus
                             value={memberFilter}
                             onChange={(e) => setMemberFilter(e.target.value)}
                             sx={{
@@ -209,10 +217,17 @@ const Groups = () => {
                             </Typography>
                         ) : (
                             contacts
-                                .filter((contact) =>
-                                    contact.name
-                                        .toLowerCase()
-                                        .includes(memberFilter),
+                                .filter(
+                                    (contact) =>
+                                        !members
+                                            .map((member) => member.id)
+                                            .includes(contact.id) &&
+                                        (contact.name
+                                            .toLowerCase()
+                                            .includes(memberFilter) ||
+                                            contact.name
+                                                .toUpperCase()
+                                                .includes(memberFilter)),
                                 )
                                 .map((contact) => (
                                     <MenuItem
@@ -236,9 +251,15 @@ const Groups = () => {
                         )}
                     </Box>
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>Create Group</Button>
+                <DialogActions
+                    sx={{
+                        px: 2,
+                    }}
+                >
+                    <StyledButton onClick={handleClose}>Cancel</StyledButton>
+                    <StyledButton onClick={handleClose}>
+                        Create Group
+                    </StyledButton>
                 </DialogActions>
             </Dialog>
             <Box

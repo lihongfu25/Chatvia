@@ -1,9 +1,10 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { Box, InputBase, Button } from "@mui/material";
+import { Box, InputBase } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { PrimaryButton } from "../PrimaryButton";
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(PrimaryButton)({
     padding: "2px 16px",
     textTransform: "none",
     boxShadow: "none",

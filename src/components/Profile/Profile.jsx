@@ -28,6 +28,7 @@ import {
     userChangeAddress,
 } from "../../redux/store/userSlice";
 import { Input } from "../Input";
+import { PrimaryButton } from "../PrimaryButton";
 import Avatar from "../../assets/img/DSC_0036-1.jpg";
 
 const getCurTime = () => {
@@ -78,7 +79,7 @@ const StyledSwitch = styled(Switch)(({ theme }) => ({
             "& + .MuiSwitch-track": {
                 opacity: 1,
                 backgroundColor:
-                    theme.palette.mode === "dark" ? "#177ddc" : "#1890ff",
+                    theme.palette.mode === "dark" ? "#177ddc" : "#7269ef",
             },
         },
     },
@@ -172,6 +173,10 @@ const Profile = () => {
     };
     const handleChangeAddress = (value) => {
         dispatch(userChangeAddress(value));
+    };
+
+    const handleComplatedEdit = () => {
+        setEdit(false);
     };
 
     return (
@@ -360,10 +365,10 @@ const Profile = () => {
                             onSubmit={handleChangeAddress}
                         />
                         {edit && (
-                            <Button
+                            <PrimaryButton
                                 variant='contained'
                                 disableElevation
-                                onClick={() => setEdit(false)}
+                                onClick={handleComplatedEdit}
                                 sx={{
                                     padding: "2px 16px",
                                     textTransform: "none",
@@ -371,7 +376,7 @@ const Profile = () => {
                                 }}
                             >
                                 Save
-                            </Button>
+                            </PrimaryButton>
                         )}
                     </AccordionDetails>
                 </Accordion>
