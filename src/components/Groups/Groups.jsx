@@ -27,6 +27,16 @@ const StyledButton = styled(PrimaryButton)({
     },
 });
 
+const StyledTextField = styled(TextField)({
+    ".MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#ccc",
+        borderWidth: 1,
+    },
+    ".MuiFormLabel-colorSecondary.Mui-focused": {
+        color: "#495057",
+    },
+});
+
 const contacts = [
     {
         id: "1",
@@ -60,8 +70,28 @@ const contacts = [
     },
 ];
 
+const groups = [
+    {
+        id: "1",
+        name: "HTML, CSS",
+    },
+
+    {
+        id: "2",
+        name: "Javascrips",
+    },
+    {
+        id: "3",
+        name: "ReactJS",
+    },
+    {
+        id: "4",
+        name: "PHP",
+    },
+];
+
 const Groups = () => {
-    const [search, setSearch] = React.useState("");
+    const [searchGroup, setSearchGroup] = React.useState("");
     const [openCreateGroup, setOpenCreateGroup] = React.useState(false);
     const [groupName, setGroupName] = React.useState("");
     const [members, setMembers] = React.useState([]);
@@ -71,18 +101,22 @@ const Groups = () => {
 
     const handleClose = () => {
         setOpenCreateGroup(false);
+        setGroupName("");
+        setMembers([]);
+        setMemberFilter("");
     };
 
     const handleAddMembers = (value) => {
         setMembers((prevState) => [...prevState, value]);
         setMemberFilter("");
-        searchMemberRef.current.focus();
+        searchMemberRef.current.firstChild.focus();
     };
+
     const handleRemoveMembers = (value) => {
         setMembers((prevState) =>
             prevState.filter((member) => member.id !== value.id),
         );
-        searchMemberRef.current.focus();
+        searchMemberRef.current.firstChild.focus();
     };
 
     return (
@@ -99,7 +133,9 @@ const Groups = () => {
             >
                 <Typography className='primary-text-color'>Groups</Typography>
                 <GroupAddOutlinedIcon
-                    onClick={() => setOpenCreateGroup(true)}
+                    onClick={() => {
+                        setOpenCreateGroup(true);
+                    }}
                     sx={{
                         color: "#7F8487",
                         cursor: "pointer",
@@ -117,17 +153,20 @@ const Groups = () => {
             >
                 <DialogTitle>Create New Group</DialogTitle>
                 <DialogContent>
-                    <TextField
+                    <StyledTextField
+                        id='name'
+                        color='secondary'
+                        label='Group Name'
                         size='small'
+                        margin='normal'
+                        fullWidth
                         value={groupName}
                         onChange={(e) => setGroupName(e.target.value)}
-                        margin='normal'
-                        id='name'
-                        label='Group Name'
-                        fullWidth
                     />
                     <Box
-                        className='action-text-color'
+                        onClick={() =>
+                            searchMemberRef.current.firstChild.focus()
+                        }
                         sx={{
                             py: "7px",
                             px: "14px",
@@ -137,6 +176,7 @@ const Groups = () => {
                         }}
                     >
                         <Typography
+                            className='action-text-color'
                             sx={{
                                 pr: 1.5,
                                 display: "inline-block",
@@ -222,12 +262,11 @@ const Groups = () => {
                                         !members
                                             .map((member) => member.id)
                                             .includes(contact.id) &&
-                                        (contact.name
+                                        contact.name
                                             .toLowerCase()
-                                            .includes(memberFilter) ||
-                                            contact.name
-                                                .toUpperCase()
-                                                .includes(memberFilter)),
+                                            .includes(
+                                                memberFilter.toLowerCase(),
+                                            ),
                                 )
                                 .map((contact) => (
                                     <MenuItem
@@ -276,8 +315,8 @@ const Groups = () => {
                 <InputBase
                     fullWidth
                     placeholder='Search groups...'
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
+                    value={searchGroup}
+                    onChange={(e) => setSearchGroup(e.target.value)}
                     sx={{
                         paddingLeft: 1.5,
                     }}
@@ -288,9 +327,15 @@ const Groups = () => {
                     mt: 3,
                 }}
             >
-                <GroupConversation name='hello' />
-                <GroupConversation name='General' />
-                <GroupConversation name='Designer' />
+                {groups
+                    .filter((group) =>
+                        group.name
+                            .toLowerCase()
+                            .includes(searchGroup.toLowerCase()),
+                    )
+                    .map((group) => (
+                        <GroupConversation key={group.id} name={group.name} />
+                    ))}
             </Box>
         </Box>
     );
