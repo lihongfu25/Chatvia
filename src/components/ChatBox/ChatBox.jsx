@@ -333,7 +333,6 @@ const ChatBox = () => {
                     </Tooltip>
                 ))}
                 <PrimaryButton
-                    variant='contained'
                     endIcon={<SendIcon />}
                     disableElevation
                     sx={{

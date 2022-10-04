@@ -93,7 +93,6 @@ const Input = ({ value = "", label, isEdit, onSubmit }) => {
                         }}
                     >
                         <StyledButton
-                            variant='contained'
                             onClick={handleSubmit}
                             sx={{
                                 marginRight: 1,
