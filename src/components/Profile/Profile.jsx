@@ -6,13 +6,12 @@ import {
     Typography,
     Menu,
     MenuItem,
-    InputBase,
     Divider,
     Switch,
     Accordion,
     AccordionSummary,
     AccordionDetails,
-    Button,
+    Input as MuiInput,
 } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -124,11 +123,14 @@ const Profile = () => {
 
         return () => {
             clearInterval(timeInterval);
-            console.log();
         };
     }, []);
 
+    const statusRef = React.useRef();
+
     React.useEffect(() => {
+        statusRef.current?.click();
+
         const handleListenKeyPress = (e) => {
             if (e.key === "Enter") {
                 dispatch(activeStatusChange(status));
@@ -144,8 +146,6 @@ const Profile = () => {
         };
     }, [customStatus]);
 
-    const statusRef = React.useRef();
-
     const handleOpenEdit = () => {
         setEdit(true);
         setAnchorEl(null);
@@ -153,7 +153,6 @@ const Profile = () => {
     const handleCustomStatus = () => {
         setCustomStatus(true);
         setAnchorEl(null);
-        console.log(statusRef);
     };
     const handleChangeStatus = (e) => {
         setShowActiveStatus(e.target.checked);
@@ -285,18 +284,19 @@ const Profile = () => {
                         ></ActiveStatus>
                     )}
                     {customStatus === true ? (
-                        <InputBase
-                            ref={statusRef}
-                            autoFocus
+                        <MuiInput
+                            variant='standard'
+                            color='secondary'
                             placeholder='Enter status'
+                            ref={statusRef}
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                             sx={{
-                                marginLeft: 1.5,
-                                backgroundColor: "#fff",
-                                ".css-yz9k0d-MuiInputBase-input": {
-                                    paddingLeft: 1.5,
-                                },
+                                width: 160,
+                                ".css-1x51dt5-MuiInputBase-input-MuiInput-input":
+                                    {
+                                        paddingLeft: 1.5,
+                                    },
                             }}
                         />
                     ) : (
@@ -366,7 +366,6 @@ const Profile = () => {
                         />
                         {edit && (
                             <PrimaryButton
-                                variant='contained'
                                 disableElevation
                                 onClick={handleComplatedEdit}
                                 sx={{
