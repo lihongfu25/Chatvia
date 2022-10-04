@@ -14,6 +14,11 @@ const Input = ({ value = "", label, isEdit, onSubmit }) => {
     const [openEditor, setOpenEditor] = React.useState(false);
     const [inputValue, setInputValue] = React.useState("");
 
+    React.useEffect(() => {
+        if (isEdit) setOpenEditor(false);
+        return () => {};
+    }, [isEdit]);
+
     const iconEditRef = React.useRef();
 
     const handleOpenEditor = () => {
@@ -70,7 +75,7 @@ const Input = ({ value = "", label, isEdit, onSubmit }) => {
                     }}
                 />
             )}
-            {openEditor && (
+            {isEdit && openEditor && (
                 <>
                     <InputBase
                         className='primary-text-color'
