@@ -1,10 +1,10 @@
 import React from "react";
-// import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-// import { TextInput } from "./components/TextInput";
-import { Login } from "./screen/Login";
-import { LoginLogoutLayout } from "./layout/LoginLogout";
 import { useRoutes } from "react-router-dom";
 import { routes } from "./routes";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { far } from "@fortawesome/free-regular-svg-icons";
+library.add(far);
+
 function App() {
     const appRoutes = useRoutes(routes);
     return <div>{appRoutes}</div>;
