@@ -5,7 +5,7 @@ import { Navigation } from "../../components/Navigation";
 import { Profile } from "../../components/Profile";
 import { Chats } from "../../components/Chats";
 import { Groups } from "../../components/Groups";
-import { Contacts } from "../../components/Contacts";
+import { Friends } from "../../components/Friends";
 import { Settings } from "../../components/Settings";
 
 import { ChatBox } from "../../components/ChatBox";
@@ -19,7 +19,7 @@ const MainLayout = () => {
                 {currentTab === "Profile" && <Profile />}
                 {currentTab === "Chats" && <Chats />}
                 {currentTab === "Groups" && <Groups />}
-                {currentTab === "Contacts" && <Contacts />}
+                {currentTab === "Friends" && <Friends />}
                 {currentTab === "Settings" && <Settings />}
             </Box>
             <ChatBox />

@@ -12,6 +12,7 @@ import { ButtonWithTooltip } from "../ButtonWithTooltip";
 import { navigationChange } from "../Navigation/navigationSlice";
 import { modeChange } from "../../redux/store/modeSlice";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
+
 const navButtons = [
     {
         value: "Profile",
@@ -26,7 +27,7 @@ const navButtons = [
         icon: PeopleOutlinedIcon,
     },
     {
-        value: "Contacts",
+        value: "Friends",
         icon: ConnectWithoutContactOutlinedIcon,
     },
     {
@@ -34,6 +35,7 @@ const navButtons = [
         icon: SettingsOutlinedIcon,
     },
 ];
+
 const Navigation = () => {
     const currentTab = useSelector((state) => state.navigation.currentTab);
     const currentMode = useSelector((state) => state.mode.currentMode);
