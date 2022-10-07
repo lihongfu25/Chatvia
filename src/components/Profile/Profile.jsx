@@ -137,6 +137,10 @@ const Profile = () => {
     const saveChangeBtn = React.useRef();
 
     React.useEffect(() => {
+        setStatus(activeStatus);
+    }, [activeStatus]);
+
+    React.useEffect(() => {
         statusRef.current?.click();
 
         const handleListenKeyPress = (e) => {
@@ -146,13 +150,18 @@ const Profile = () => {
             }
         };
 
-        if (customStatus)
+        if (customStatus) {
+            statusRef.current?.firstChild.addEventListener("blur", () => {
+                setCustomStatus(false);
+                setStatus(activeStatus);
+            });
             window.addEventListener("keypress", handleListenKeyPress);
+        }
 
         return () => {
             window.removeEventListener("keypress", handleListenKeyPress);
         };
-    }, [customStatus]);
+    }, [customStatus, status, dispatch]);
 
     const handleOpenEdit = () => {
         setEdit(true);
@@ -316,7 +325,7 @@ const Profile = () => {
                             }}
                         />
                     ) : (
-                        status
+                        activeStatus
                     )}
                 </Box>
             </Box>
