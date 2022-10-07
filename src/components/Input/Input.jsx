@@ -10,32 +10,28 @@ const StyledButton = styled(PrimaryButton)({
     boxShadow: "none",
 });
 
-const Input = ({ value = "", label, isEdit, onSubmit }) => {
+const Input = ({ value = "", label, isEdit, onSubmit, getEditStatus }) => {
     const [openEditor, setOpenEditor] = React.useState(false);
-    const [inputValue, setInputValue] = React.useState("");
-
-    React.useEffect(() => {
-        if (isEdit) setOpenEditor(false);
-        return () => {};
-    }, [isEdit]);
+    const [inputValue, setInputValue] = React.useState(value);
 
     const iconEditRef = React.useRef();
 
     const handleOpenEditor = () => {
         iconEditRef.current.style.display = "none";
         setOpenEditor(true);
-        setInputValue(value);
+        getEditStatus(!openEditor);
     };
-
     const handleSubmit = () => {
         iconEditRef.current.style.display = "inline-block";
         setOpenEditor(false);
         onSubmit(inputValue);
+        getEditStatus(!openEditor);
     };
 
     const handleClose = () => {
         iconEditRef.current.style.display = "inline-block";
         setOpenEditor(false);
+        getEditStatus(!openEditor);
     };
 
     return (
@@ -60,7 +56,7 @@ const Input = ({ value = "", label, isEdit, onSubmit }) => {
                         lineHeight: "32px",
                     }}
                 >
-                    {inputValue || value}
+                    {inputValue}
                 </p>
             )}
             {isEdit && (

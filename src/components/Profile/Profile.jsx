@@ -12,6 +12,7 @@ import {
     AccordionSummary,
     AccordionDetails,
     Input as MuiInput,
+    Button,
 } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -27,7 +28,6 @@ import {
     userChangeAddress,
 } from "../../redux/store/userSlice";
 import { Input } from "../Input";
-import { PrimaryButton } from "../PrimaryButton";
 import Avatar from "../../assets/img/DSC_0036-1.jpg";
 
 const getCurTime = () => {
@@ -101,6 +101,13 @@ const StyledSwitch = styled(Switch)(({ theme }) => ({
         boxSizing: "border-box",
     },
 }));
+const StyledButton = styled(Button)({
+    backgroundColor: "#7269ef",
+    color: "#fff",
+    ":hover": {
+        backgroundColor: "rgba(114,105,239, 0.8)",
+    },
+});
 
 const Profile = () => {
     const isActive = useSelector((state) => state.activeStatus.isActive);
@@ -127,6 +134,7 @@ const Profile = () => {
     }, []);
 
     const statusRef = React.useRef();
+    const saveChangeBtn = React.useRef();
 
     React.useEffect(() => {
         statusRef.current?.click();
@@ -159,7 +167,15 @@ const Profile = () => {
         setAnchorEl(null);
         dispatch(activeStatusToggle());
     };
-
+    const getEditStatus = (value) => {
+        if (value) {
+            saveChangeBtn.current.disabled = true;
+            saveChangeBtn.current.classList.add("chatvia-disabled-PriBtn");
+        } else {
+            saveChangeBtn.current.disabled = false;
+            saveChangeBtn.current.classList.remove("chatvia-disabled-PriBtn");
+        }
+    };
     const handleExpanded = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
@@ -350,12 +366,14 @@ const Profile = () => {
                             isEdit={edit}
                             value={user.name}
                             onSubmit={handleChangeName}
+                            getEditStatus={getEditStatus}
                         />
                         <Input
                             label='Email'
                             isEdit={edit}
                             value={user.email}
                             onSubmit={handleChangeEmail}
+                            getEditStatus={getEditStatus}
                         />
                         <Input label='Time' value={curTime} />
                         <Input
@@ -363,9 +381,11 @@ const Profile = () => {
                             isEdit={edit}
                             value={user.address}
                             onSubmit={handleChangeAddress}
+                            getEditStatus={getEditStatus}
                         />
                         {edit && (
-                            <PrimaryButton
+                            <StyledButton
+                                ref={saveChangeBtn}
                                 disableElevation
                                 onClick={handleComplatedEdit}
                                 sx={{
@@ -375,7 +395,7 @@ const Profile = () => {
                                 }}
                             >
                                 Save
-                            </PrimaryButton>
+                            </StyledButton>
                         )}
                     </AccordionDetails>
                 </Accordion>

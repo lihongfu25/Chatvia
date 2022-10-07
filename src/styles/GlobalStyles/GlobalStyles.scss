@@ -35,6 +35,20 @@
 .chatvia-link {
     text-decoration: none;
 }
+.chatvia-icon-medium {
+    color: #7f8487;
+    font-size: 24px;
+    padding: 6px;
+}
+.chatvia-icon-small {
+    color: #7f8487;
+    font-size: 18px;
+    padding: 4px;
+}
+.chatvia-disabled-PriBtn {
+    background-color: rgba($color: #7269ef, $alpha: 0.7) !important;
+    cursor: not-allowed !important;
+}
 .chatvia-unScrollBar::-webkit-scrollbar {
     display: none;
 }
