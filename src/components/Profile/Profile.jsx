@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import { ActiveStatus } from "../ActiveStatus";
 import {
     activeStatusToggle,
@@ -367,7 +367,7 @@ const Profile = () => {
                                 display: "flex",
                             }}
                         >
-                            <PersonOutlineOutlinedIcon
+                            <PersonRoundedIcon
                                 fontSize='small'
                                 sx={{
                                     marginRight: 1,

@@ -119,213 +119,228 @@ const Groups = () => {
     };
 
     return (
-        <Box
-            sx={{
-                p: 3,
-            }}
-        >
+        <>
             <Box
                 sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
+                    p: 3,
                 }}
             >
-                <Typography className='primary-text-color'>Groups</Typography>
-                <Tooltip title='Create group'>
-                    <GroupRoundedIcon
-                        onClick={() => {
-                            setOpenCreateGroup(true);
-                        }}
-                        sx={{
-                            color: "#7F8487",
-                            cursor: "pointer",
-                        }}
-                    />
-                </Tooltip>
-            </Box>
-            <Dialog
-                open={openCreateGroup}
-                onClose={handleClose}
-                sx={{
-                    ".css-1t1j96h-MuiPaper-root-MuiDialog-paper": {
-                        width: 480,
-                    },
-                }}
-            >
-                <DialogTitle>Create New Group</DialogTitle>
-                <DialogContent>
-                    <StyledTextField
-                        id='name'
-                        color='secondary'
-                        label='Group Name'
-                        size='small'
-                        margin='normal'
-                        fullWidth
-                        value={groupName}
-                        onChange={(e) => setGroupName(e.target.value)}
-                    />
-                    <Box
-                        onClick={() =>
-                            searchMemberRef.current.firstChild.focus()
-                        }
-                        sx={{
-                            py: "7px",
-                            px: "14px",
-                            border: "1px solid #ccc",
-                            borderRadius: 1,
-                            my: 1,
-                        }}
-                    >
-                        <Typography
-                            className='action-text-color'
-                            sx={{
-                                pr: 1.5,
-                                display: "inline-block",
-                            }}
-                        >
-                            To:
-                        </Typography>
-                        {members.map((member) => (
-                            <Typography
-                                key={member.id}
-                                sx={{
-                                    display: "inline-flex",
-                                    alignItems: "center",
-                                    py: 0.5,
-                                    px: 1,
-                                    backgroundColor: "rgba(114,105,239, 0.3)",
-                                    color: "#7269ef",
-                                    borderRadius: 1,
-                                    mr: 1,
-                                    my: 0.25,
-                                    fontSize: 14,
-                                }}
-                            >
-                                {member.name}
-                                <CloseIcon
-                                    fontSize='small'
-                                    onClick={() => handleRemoveMembers(member)}
-                                    sx={{
-                                        ml: 1,
-                                        borderRadius: "50%",
-                                        cursor: "pointer",
-                                        ":hover": {
-                                            backgroundColor:
-                                                "rgba(114,105,239, 0.2)",
-                                        },
-                                    }}
-                                />
-                            </Typography>
-                        ))}
-                        <InputBase
-                            ref={searchMemberRef}
-                            value={memberFilter}
-                            onChange={(e) => setMemberFilter(e.target.value)}
-                            sx={{
-                                ".css-yz9k0d-MuiInputBase-input": {
-                                    padding: 0,
-                                },
-                            }}
-                        />
-                    </Box>
-                    <Box
-                        sx={{
-                            backgroundColor: "#fff",
-                            border: "1px solid #ccc",
-                            borderRadius: 1,
-                            height: 150,
-                            overflowY: "scroll",
-                            animation: "fadeIn 0.5s  ease-in-out",
-                            "@keyframes fadeIn": {
-                                "0%": {
-                                    opacity: 0,
-                                },
-                                "100%": {
-                                    opacity: 1,
-                                },
-                            },
-                        }}
-                    >
-                        {memberFilter === "" ? (
-                            <Typography
-                                className='primary-text-color'
-                                sx={{
-                                    mt: 1,
-                                    textAlign: "center",
-                                }}
-                            >
-                                Gợi ý cho bạn
-                            </Typography>
-                        ) : (
-                            contacts
-                                .filter(
-                                    (contact) =>
-                                        !members
-                                            .map((member) => member.id)
-                                            .includes(contact.id) &&
-                                        contact.name
-                                            .toLowerCase()
-                                            .includes(
-                                                memberFilter.toLowerCase(),
-                                            ),
-                                )
-                                .map((contact) => (
-                                    <MenuItem
-                                        key={contact.id}
-                                        onClick={() =>
-                                            handleAddMembers(contact)
-                                        }
-                                    >
-                                        <Avatar
-                                            alt=''
-                                            src={contact.avatar}
-                                            sx={{
-                                                width: 32,
-                                                height: 32,
-                                                mr: 1,
-                                            }}
-                                        />
-                                        {contact.name}
-                                    </MenuItem>
-                                ))
-                        )}
-                    </Box>
-                </DialogContent>
-                <DialogActions
+                <Box
                     sx={{
-                        px: 2,
+                        display: "flex",
+                        justifyContent: "space-between",
                     }}
                 >
-                    <StyledButton onClick={handleClose}>Cancel</StyledButton>
-                    <StyledButton onClick={handleClose}>
-                        Create Group
-                    </StyledButton>
-                </DialogActions>
-            </Dialog>
-            <Box
-                sx={{
-                    display: "flex",
-                    backgroundColor: "#fff",
-                    alignItems: "center",
-                    p: "4px 12px",
-                    borderRadius: 1.5,
-                    marginTop: 2,
-                }}
-            >
-                <SearchOutlinedIcon color='action' />
-                <InputBase
-                    fullWidth
-                    placeholder='Search groups...'
-                    value={searchGroup}
-                    onChange={(e) => setSearchGroup(e.target.value)}
+                    <Typography variant='h6' className='primary-text-color'>
+                        Groups
+                    </Typography>
+                    <Tooltip title='Create group'>
+                        <GroupRoundedIcon
+                            onClick={() => {
+                                setOpenCreateGroup(true);
+                            }}
+                            sx={{
+                                color: "#7F8487",
+                                cursor: "pointer",
+                            }}
+                        />
+                    </Tooltip>
+                </Box>
+                <Dialog
+                    open={openCreateGroup}
+                    onClose={handleClose}
                     sx={{
-                        paddingLeft: 1.5,
+                        ".css-1t1j96h-MuiPaper-root-MuiDialog-paper": {
+                            width: 480,
+                        },
                     }}
-                />
+                >
+                    <DialogTitle>Create New Group</DialogTitle>
+                    <DialogContent>
+                        <StyledTextField
+                            id='name'
+                            color='secondary'
+                            label='Group Name'
+                            size='small'
+                            margin='normal'
+                            fullWidth
+                            value={groupName}
+                            onChange={(e) => setGroupName(e.target.value)}
+                        />
+                        <Box
+                            onClick={() =>
+                                searchMemberRef.current.firstChild.focus()
+                            }
+                            sx={{
+                                py: "7px",
+                                px: "14px",
+                                border: "1px solid #ccc",
+                                borderRadius: 1,
+                                my: 1,
+                            }}
+                        >
+                            <Typography
+                                className='action-text-color'
+                                sx={{
+                                    pr: 1.5,
+                                    display: "inline-block",
+                                }}
+                            >
+                                To:
+                            </Typography>
+                            {members.map((member) => (
+                                <Typography
+                                    key={member.id}
+                                    sx={{
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        py: 0.5,
+                                        px: 1,
+                                        backgroundColor:
+                                            "rgba(114,105,239, 0.3)",
+                                        color: "#7269ef",
+                                        borderRadius: 1,
+                                        mr: 1,
+                                        my: 0.25,
+                                        fontSize: 14,
+                                    }}
+                                >
+                                    {member.name}
+                                    <CloseIcon
+                                        fontSize='small'
+                                        onClick={() =>
+                                            handleRemoveMembers(member)
+                                        }
+                                        sx={{
+                                            ml: 1,
+                                            borderRadius: "50%",
+                                            cursor: "pointer",
+                                            ":hover": {
+                                                backgroundColor:
+                                                    "rgba(114,105,239, 0.2)",
+                                            },
+                                        }}
+                                    />
+                                </Typography>
+                            ))}
+                            <InputBase
+                                ref={searchMemberRef}
+                                value={memberFilter}
+                                onChange={(e) =>
+                                    setMemberFilter(e.target.value)
+                                }
+                                sx={{
+                                    ".css-yz9k0d-MuiInputBase-input": {
+                                        padding: 0,
+                                    },
+                                }}
+                            />
+                        </Box>
+                        <Box
+                            sx={{
+                                backgroundColor: "#fff",
+                                border: "1px solid #ccc",
+                                borderRadius: 1,
+                                height: 150,
+                                overflowY: "scroll",
+                                animation: "fadeIn 0.5s  ease-in-out",
+                                "@keyframes fadeIn": {
+                                    "0%": {
+                                        opacity: 0,
+                                    },
+                                    "100%": {
+                                        opacity: 1,
+                                    },
+                                },
+                            }}
+                        >
+                            {memberFilter === "" ? (
+                                <Typography
+                                    className='primary-text-color'
+                                    sx={{
+                                        mt: 1,
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    Gợi ý cho bạn
+                                </Typography>
+                            ) : (
+                                contacts
+                                    .filter(
+                                        (contact) =>
+                                            !members
+                                                .map((member) => member.id)
+                                                .includes(contact.id) &&
+                                            contact.name
+                                                .toLowerCase()
+                                                .includes(
+                                                    memberFilter.toLowerCase(),
+                                                ),
+                                    )
+                                    .map((contact) => (
+                                        <MenuItem
+                                            key={contact.id}
+                                            onClick={() =>
+                                                handleAddMembers(contact)
+                                            }
+                                        >
+                                            <Avatar
+                                                alt=''
+                                                src={contact.avatar}
+                                                sx={{
+                                                    width: 32,
+                                                    height: 32,
+                                                    mr: 1,
+                                                }}
+                                            />
+                                            {contact.name}
+                                        </MenuItem>
+                                    ))
+                            )}
+                        </Box>
+                    </DialogContent>
+                    <DialogActions
+                        sx={{
+                            px: 2,
+                        }}
+                    >
+                        <StyledButton onClick={handleClose}>
+                            Cancel
+                        </StyledButton>
+                        <StyledButton onClick={handleClose}>
+                            Create Group
+                        </StyledButton>
+                    </DialogActions>
+                </Dialog>
+                <Box
+                    sx={{
+                        display: "flex",
+                        backgroundColor: "#fff",
+                        alignItems: "center",
+                        borderRadius: 1.5,
+                        p: "4px 12px",
+                        mt: 2,
+                    }}
+                >
+                    <SearchOutlinedIcon color='action' />
+                    <InputBase
+                        fullWidth
+                        placeholder='Search groups...'
+                        value={searchGroup}
+                        onChange={(e) => setSearchGroup(e.target.value)}
+                        sx={{
+                            paddingLeft: 1.5,
+                        }}
+                    />
+                </Box>
             </Box>
+
             <Box
+                className='chatvia-unScrollBar'
                 sx={{
-                    mt: 3,
+                    mx: 3,
+                    flexGrow: 1,
+                    overflowY: "scroll",
                 }}
             >
                 {groups
@@ -338,7 +353,7 @@ const Groups = () => {
                         <GroupConversation key={group.id} name={group.name} />
                     ))}
             </Box>
-        </Box>
+        </>
     );
 };
 
