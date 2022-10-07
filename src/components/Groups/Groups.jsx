@@ -128,6 +128,7 @@ const Groups = () => {
                 <Box
                     sx={{
                         display: "flex",
+                        alignItems: "center",
                         justifyContent: "space-between",
                     }}
                 >

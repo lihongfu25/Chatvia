@@ -13,6 +13,7 @@ import {
     AccordionDetails,
     Input as MuiInput,
     Button,
+    Tooltip,
 } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -224,14 +225,17 @@ const Profile = () => {
                 <Typography variant='h6' className='primary-text-color'>
                     Profile
                 </Typography>
-                <MoreVertOutlinedIcon
-                    fontSize='small'
-                    className='primary-text-color'
-                    onClick={(e) => setAnchorEl(e.currentTarget)}
-                    sx={{
-                        cursor: "pointer",
-                    }}
-                />
+                <Tooltip title='More'>
+                    <MoreVertOutlinedIcon
+                        fontSize='small'
+                        className='primary-text-color'
+                        onClick={(e) => setAnchorEl(e.currentTarget)}
+                        sx={{
+                            cursor: "pointer",
+                        }}
+                    />
+                </Tooltip>
+
                 <Menu
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
