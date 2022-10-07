@@ -10,7 +10,7 @@ const StyledButton = styled(PrimaryButton)({
     boxShadow: "none",
 });
 
-const Input = ({ value = "", label, isEdit, onSubmit, getEditStatus }) => {
+const Input = ({ value = "", label, isEdit, onSubmit, setEditing }) => {
     const [openEditor, setOpenEditor] = React.useState(false);
     const [inputValue, setInputValue] = React.useState(value);
 
@@ -19,19 +19,34 @@ const Input = ({ value = "", label, isEdit, onSubmit, getEditStatus }) => {
     const handleOpenEditor = () => {
         iconEditRef.current.style.display = "none";
         setOpenEditor(true);
-        getEditStatus(!openEditor);
+        setEditing((prevState) => {
+            const newArr = prevState.filter(
+                (element) => element.label !== label,
+            );
+            return [...newArr, { label, isEditing: !openEditor }];
+        });
     };
     const handleSubmit = () => {
         iconEditRef.current.style.display = "inline-block";
         setOpenEditor(false);
         onSubmit(inputValue);
-        getEditStatus(!openEditor);
+        setEditing((prevState) => {
+            const newArr = prevState.filter(
+                (element) => element.label !== label,
+            );
+            return [...newArr, { label, isEditing: !openEditor }];
+        });
     };
 
     const handleClose = () => {
         iconEditRef.current.style.display = "inline-block";
         setOpenEditor(false);
-        getEditStatus(!openEditor);
+        setEditing((prevState) => {
+            const newArr = prevState.filter(
+                (element) => element.label !== label,
+            );
+            return [...newArr, { label, isEditing: !openEditor }];
+        });
     };
 
     return (

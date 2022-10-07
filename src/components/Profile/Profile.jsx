@@ -107,6 +107,10 @@ const StyledButton = styled(Button)({
     ":hover": {
         backgroundColor: "rgba(114,105,239, 0.8)",
     },
+    ":disabled": {
+        backgroundColor: "rgba(114,105,239, 0.5)",
+        color: "#fff",
+    },
 });
 
 const Profile = () => {
@@ -122,6 +126,20 @@ const Profile = () => {
     const [customStatus, setCustomStatus] = React.useState(false);
     const [status, setStatus] = React.useState(activeStatus);
     const [curTime, setCurTime] = React.useState(getCurTime());
+    const [editing, setEditing] = React.useState([
+        {
+            label: "Name",
+            isEditing: false,
+        },
+        {
+            label: "Email",
+            isEditing: false,
+        },
+        {
+            label: "Address",
+            isEditing: false,
+        },
+    ]);
 
     React.useEffect(() => {
         const timeInterval = setInterval(() => {
@@ -141,15 +159,13 @@ const Profile = () => {
     }, [activeStatus]);
 
     React.useEffect(() => {
-        statusRef.current?.click();
-
+        statusRef.current?.firstChild.focus();
         const handleListenKeyPress = (e) => {
             if (e.key === "Enter") {
                 dispatch(activeStatusChange(status));
                 setCustomStatus(false);
             }
         };
-
         if (customStatus) {
             statusRef.current?.firstChild.addEventListener("blur", () => {
                 setCustomStatus(false);
@@ -157,12 +173,14 @@ const Profile = () => {
             });
             window.addEventListener("keypress", handleListenKeyPress);
         }
-
         return () => {
             window.removeEventListener("keypress", handleListenKeyPress);
+            statusRef.current?.firstChild.removeEventListener("blur", () => {
+                setCustomStatus(false);
+                setStatus(activeStatus);
+            });
         };
-    }, [customStatus, status, dispatch]);
-
+    }, [customStatus, status]);
     const handleOpenEdit = () => {
         setEdit(true);
         setAnchorEl(null);
@@ -176,19 +194,9 @@ const Profile = () => {
         setAnchorEl(null);
         dispatch(activeStatusToggle());
     };
-    const getEditStatus = (value) => {
-        if (value) {
-            saveChangeBtn.current.disabled = true;
-            saveChangeBtn.current.classList.add("chatvia-disabled-PriBtn");
-        } else {
-            saveChangeBtn.current.disabled = false;
-            saveChangeBtn.current.classList.remove("chatvia-disabled-PriBtn");
-        }
-    };
     const handleExpanded = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
-
     const handleChangeName = (value) => {
         dispatch(userChangeName(value));
     };
@@ -198,7 +206,6 @@ const Profile = () => {
     const handleChangeAddress = (value) => {
         dispatch(userChangeAddress(value));
     };
-
     const handleComplatedEdit = () => {
         setEdit(false);
     };
@@ -375,14 +382,14 @@ const Profile = () => {
                             isEdit={edit}
                             value={user.name}
                             onSubmit={handleChangeName}
-                            getEditStatus={getEditStatus}
+                            setEditing={setEditing}
                         />
                         <Input
                             label='Email'
                             isEdit={edit}
                             value={user.email}
                             onSubmit={handleChangeEmail}
-                            getEditStatus={getEditStatus}
+                            setEditing={setEditing}
                         />
                         <Input label='Time' value={curTime} />
                         <Input
@@ -390,13 +397,18 @@ const Profile = () => {
                             isEdit={edit}
                             value={user.address}
                             onSubmit={handleChangeAddress}
-                            getEditStatus={getEditStatus}
+                            setEditing={setEditing}
                         />
-                        {edit && (
+                        {edit !== false && (
                             <StyledButton
                                 ref={saveChangeBtn}
                                 disableElevation
                                 onClick={handleComplatedEdit}
+                                disabled={
+                                    editing.filter(
+                                        (element) => element.isEditing === true,
+                                    ).length !== 0
+                                }
                                 sx={{
                                     padding: "2px 16px",
                                     textTransform: "none",
