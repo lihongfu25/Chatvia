@@ -1,13 +1,15 @@
 import React from "react";
+import {
+    BsPersonFill,
+    BsChatSquareTextFill,
+    BsPeopleFill,
+    BsPersonLinesFill,
+    BsGearFill,
+    BsMoonStarsFill,
+    BsSunFill,
+} from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { Avatar, Box, ButtonBase } from "@mui/material";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ConnectWithoutContactOutlinedIcon from "@mui/icons-material/ConnectWithoutContactOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import { ButtonWithTooltip } from "../ButtonWithTooltip";
 import { navigationChange } from "../Navigation/navigationSlice";
 import { modeChange } from "../../redux/store/modeSlice";
@@ -16,23 +18,23 @@ import avatar from "../../assets/img/DSC_0036-1.jpg";
 const navButtons = [
     {
         value: "Profile",
-        icon: PersonOutlineOutlinedIcon,
+        icon: BsPersonFill,
     },
     {
         value: "Chats",
-        icon: TextsmsOutlinedIcon,
+        icon: BsChatSquareTextFill,
     },
     {
         value: "Groups",
-        icon: PeopleOutlinedIcon,
+        icon: BsPeopleFill,
     },
     {
         value: "Friends",
-        icon: ConnectWithoutContactOutlinedIcon,
+        icon: BsPersonLinesFill,
     },
     {
         value: "Settings",
-        icon: SettingsOutlinedIcon,
+        icon: BsGearFill,
     },
 ];
 
@@ -91,11 +93,7 @@ const Navigation = () => {
             >
                 <ButtonWithTooltip
                     value='Dark/ Light Mode'
-                    icon={
-                        currentMode === "light"
-                            ? DarkModeOutlinedIcon
-                            : LightModeOutlinedIcon
-                    }
+                    icon={currentMode === "light" ? BsMoonStarsFill : BsSunFill}
                     onClick={handleChangeMode}
                     sx={{
                         marginBottom: 3,

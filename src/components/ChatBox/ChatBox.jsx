@@ -11,11 +11,13 @@ import {
     InputBase,
     Tooltip,
 } from "@mui/material";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
-import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import {
+    BsSearch,
+    BsTelephoneFill,
+    BsCameraVideoFill,
+    BsPersonFill,
+    BsThreeDots,
+} from "react-icons/bs";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
 import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import PhotoSizeSelectActualOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActualOutlined";
@@ -32,6 +34,9 @@ const StyledInput = styled(InputBase)({
     "& .MuiInputBase-input": {
         padding: "8px 12px",
     },
+});
+const StyledIconButton = styled(IconButton)({
+    margin: "0 4px",
 });
 
 const funcBtns = [
@@ -274,21 +279,23 @@ const ChatBox = () => {
                         </Box>
                     )}
 
-                    <IconButton onClick={() => setOpenSearch((prev) => !prev)}>
-                        <SearchOutlinedIcon />
-                    </IconButton>
-                    <IconButton>
-                        <PhoneOutlinedIcon />
-                    </IconButton>
-                    <IconButton>
-                        <VideocamOutlinedIcon />
-                    </IconButton>
-                    <IconButton>
-                        <PersonOutlineOutlinedIcon />
-                    </IconButton>
-                    <IconButton>
-                        <MoreHorizOutlinedIcon />
-                    </IconButton>
+                    <StyledIconButton
+                        onClick={() => setOpenSearch((prev) => !prev)}
+                    >
+                        <BsSearch className='chatvia-icon-small' />
+                    </StyledIconButton>
+                    <StyledIconButton>
+                        <BsTelephoneFill className='chatvia-icon-small' />
+                    </StyledIconButton>
+                    <StyledIconButton>
+                        <BsCameraVideoFill className='chatvia-icon-small' />
+                    </StyledIconButton>
+                    <StyledIconButton>
+                        <BsPersonFill className='chatvia-icon-small' />
+                    </StyledIconButton>
+                    <StyledIconButton>
+                        <BsThreeDots className='chatvia-icon-small' />
+                    </StyledIconButton>
                 </Box>
             </Box>
             <Divider />

@@ -26,12 +26,7 @@ const ButtonWithTooltip = ({
             }}
             onClick={onClick}
         >
-            <Icon
-                fontSize='inherit'
-                sx={{
-                    color: "#878a92",
-                }}
-            />
+            <Icon className='chatvia-icon-medium' />
             <Paper
                 className={`tooltip placement-${placement}`}
                 elevation={1}
