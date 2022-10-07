@@ -39,6 +39,14 @@ const StyledIconButton = styled(IconButton)({
     margin: "0 4px",
 });
 
+const StyledButton = styled(PrimaryButton)({
+    color: "#7269ef",
+    backgroundColor: "#fff",
+    ":hover": {
+        backgroundColor: "#f9f9f9",
+    },
+});
+
 const funcBtns = [
     {
         value: "Emoji",
@@ -272,10 +280,15 @@ const ChatBox = () => {
                                     marginRight: 1,
                                 }}
                             />
-                            <Button>Find</Button>
-                            <Button onClick={() => setOpenSearch(false)}>
+                            <StyledButton>Find</StyledButton>
+                            <StyledButton
+                                onClick={() => {
+                                    setOpenSearch(false);
+                                    setSearch("");
+                                }}
+                            >
                                 Close
-                            </Button>
+                            </StyledButton>
                         </Box>
                     )}
 

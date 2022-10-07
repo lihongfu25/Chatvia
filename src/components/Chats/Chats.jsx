@@ -2,6 +2,26 @@ import React from "react";
 import { Box, InputBase, Typography } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Conversation } from "./Conversation";
+
+const conversations = [
+    {
+        id: "2",
+        name: "Lê Hồng Phú 2",
+        senderId: "1",
+        message: "hé lô bạn hé lô bạn hé lô bạn hé lô bạn hé lô bạn",
+        time: "21:30",
+        seen: true,
+    },
+    {
+        id: "3",
+        name: "Lê Hồng Phú 3",
+        senderId: "3",
+        message: "hé lô bạn",
+        time: "21:30",
+        seen: false,
+    },
+];
+
 const Chats = () => {
     const [search, setSearch] = React.useState("");
     return (
@@ -51,21 +71,22 @@ const Chats = () => {
                     Recent
                 </Typography>
                 <Box className='chatvia-unScrollBar conversations'>
-                    <Conversation
-                        senderId='1'
-                        seen
-                        name={"Lê Hồng Phú"}
-                        lastest={
-                            "hé lô bạn hé lô bạn hé lô bạn hé lô bạn hé lô bạn"
-                        }
-                        time={"21:30"}
-                    />
-                    <Conversation
-                        senderId='2'
-                        name={"Lê Hồng Phú"}
-                        lastest={"hé lô bạn"}
-                        time={"21:30"}
-                    />
+                    {conversations
+                        .filter((group) =>
+                            group.name
+                                .toLowerCase()
+                                .includes(search.toLowerCase()),
+                        )
+                        .map((conversation) => (
+                            <Conversation
+                                key={conversation.id}
+                                name={conversation.name}
+                                senderId={conversation.senderId}
+                                message={conversation.message}
+                                time={conversation.time}
+                                seen={conversation.seen}
+                            />
+                        ))}
                 </Box>
             </Box>
         </>

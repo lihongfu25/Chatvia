@@ -11,8 +11,9 @@ import {
     DialogActions,
     MenuItem,
     Avatar,
+    Tooltip,
 } from "@mui/material";
-import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
+import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import { GroupConversation } from "./GroupConversation";
@@ -105,13 +106,11 @@ const Groups = () => {
         setMembers([]);
         setMemberFilter("");
     };
-
     const handleAddMembers = (value) => {
         setMembers((prevState) => [...prevState, value]);
         setMemberFilter("");
         searchMemberRef.current.firstChild.focus();
     };
-
     const handleRemoveMembers = (value) => {
         setMembers((prevState) =>
             prevState.filter((member) => member.id !== value.id),
@@ -132,15 +131,17 @@ const Groups = () => {
                 }}
             >
                 <Typography className='primary-text-color'>Groups</Typography>
-                <GroupAddOutlinedIcon
-                    onClick={() => {
-                        setOpenCreateGroup(true);
-                    }}
-                    sx={{
-                        color: "#7F8487",
-                        cursor: "pointer",
-                    }}
-                />
+                <Tooltip title='Create group'>
+                    <GroupRoundedIcon
+                        onClick={() => {
+                            setOpenCreateGroup(true);
+                        }}
+                        sx={{
+                            color: "#7F8487",
+                            cursor: "pointer",
+                        }}
+                    />
+                </Tooltip>
             </Box>
             <Dialog
                 open={openCreateGroup}
