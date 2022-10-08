@@ -38,7 +38,7 @@ const StyledTextField = styled(TextField)({
     },
 });
 
-const contacts = [
+const friends = [
     {
         id: "1",
         name: "Lê Hồng Phú 1",
@@ -266,35 +266,35 @@ const Groups = () => {
                                     Gợi ý cho bạn
                                 </Typography>
                             ) : (
-                                contacts
+                                friends
                                     .filter(
-                                        (contact) =>
+                                        (friend) =>
                                             !members
                                                 .map((member) => member.id)
-                                                .includes(contact.id) &&
-                                            contact.name
+                                                .includes(friend.id) &&
+                                            friend.name
                                                 .toLowerCase()
                                                 .includes(
                                                     memberFilter.toLowerCase(),
                                                 ),
                                     )
-                                    .map((contact) => (
+                                    .map((friend) => (
                                         <MenuItem
-                                            key={contact.id}
+                                            key={friend.id}
                                             onClick={() =>
-                                                handleAddMembers(contact)
+                                                handleAddMembers(friend)
                                             }
                                         >
                                             <Avatar
                                                 alt=''
-                                                src={contact.avatar}
+                                                src={friend.avatar}
                                                 sx={{
                                                     width: 32,
                                                     height: 32,
                                                     mr: 1,
                                                 }}
                                             />
-                                            {contact.name}
+                                            {friend.name}
                                         </MenuItem>
                                     ))
                             )}
