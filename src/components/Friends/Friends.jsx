@@ -7,7 +7,7 @@ import {
     Tooltip,
     IconButton,
     InputBase,
-    MenuItem,
+    MenuItem as MuiMenuItem,
     Avatar,
     Dialog,
     DialogTitle,
@@ -18,6 +18,7 @@ import {
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { ActiveStatus } from "../ActiveStatus";
 import { PrimaryButton } from "../PrimaryButton";
+import { MenuItem } from "./MenuItem";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
 const StyledButton = styled(PrimaryButton)({
     color: "#7269ef",
@@ -169,46 +170,7 @@ const Friends = () => {
                                             ),
                                 )
                                 .map((friend) => (
-                                    <MenuItem
-                                        key={friend.id}
-                                        sx={{
-                                            my: 0.5,
-                                            py: 1,
-                                            borderRadius: 2,
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "space-between",
-                                        }}
-                                    >
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <Avatar
-                                                alt=''
-                                                src={friend.avatar}
-                                                sx={{
-                                                    mr: 1.5,
-                                                }}
-                                            />
-                                            {friend.name}
-                                        </Box>
-                                        <IconButton
-                                            size='small'
-                                            sx={{
-                                                p: 0,
-                                                ml: 1.5,
-                                                color: "#7F8487",
-                                                ":hover": {
-                                                    backgroundColor: "#fff",
-                                                },
-                                            }}
-                                        >
-                                            <BsPersonPlusFill />
-                                        </IconButton>
-                                    </MenuItem>
+                                    <MenuItem key={friend.id} value={friend} />
                                 ))}
                         </Box>
                     </DialogContent>
@@ -257,7 +219,7 @@ const Friends = () => {
                             .includes(searchFriend.toLowerCase()),
                     )
                     .map((friend) => (
-                        <MenuItem
+                        <MuiMenuItem
                             key={friend.id}
                             sx={{
                                 my: 0.5,
@@ -273,7 +235,7 @@ const Friends = () => {
                                 <Avatar alt='' src={friend.avatar} />
                             </ActiveStatus>
                             {friend.name}
-                        </MenuItem>
+                        </MuiMenuItem>
                     ))}
             </Box>
         </>
