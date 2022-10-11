@@ -6,7 +6,6 @@ import { Profile } from "../../components/Profile";
 import { Chats } from "../../components/Chats";
 import { Groups } from "../../components/Groups";
 import { Friends } from "../../components/Friends";
-import { Settings } from "../../components/Settings";
 
 import { ChatBox } from "../../components/ChatBox";
 
@@ -20,7 +19,6 @@ const MainLayout = () => {
                 {currentTab === "Chats" && <Chats />}
                 {currentTab === "Groups" && <Groups />}
                 {currentTab === "Friends" && <Friends />}
-                {currentTab === "Settings" && <Settings />}
             </Box>
             <ChatBox />
         </Box>

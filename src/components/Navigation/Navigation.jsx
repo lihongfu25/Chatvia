@@ -4,7 +4,6 @@ import {
     BsChatSquareTextFill,
     BsPeopleFill,
     BsPersonLinesFill,
-    BsGearFill,
     BsMoonStarsFill,
     BsSunFill,
 } from "react-icons/bs";
@@ -31,10 +30,6 @@ const navButtons = [
     {
         value: "Friends",
         icon: BsPersonLinesFill,
-    },
-    {
-        value: "Settings",
-        icon: BsGearFill,
     },
 ];
 
