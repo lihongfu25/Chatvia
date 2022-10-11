@@ -7,8 +7,6 @@ import {
     Tooltip,
     IconButton,
     InputBase,
-    MenuItem as MuiMenuItem,
-    Avatar,
     Dialog,
     DialogTitle,
     DialogContent,
@@ -16,9 +14,9 @@ import {
     TextField,
 } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { ActiveStatus } from "../ActiveStatus";
 import { PrimaryButton } from "../PrimaryButton";
 import { MenuItem } from "./MenuItem";
+import { FriendItem } from "./FriendItem";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
 const StyledButton = styled(PrimaryButton)({
     color: "#7269ef",
@@ -87,7 +85,7 @@ const Friends = () => {
         <>
             <Box
                 sx={{
-                    p: 3,
+                    p: "1.5rem",
                 }}
             >
                 <Box
@@ -120,7 +118,7 @@ const Friends = () => {
                     onClose={handleClose}
                     sx={{
                         ".css-1t1j96h-MuiPaper-root-MuiDialog-paper": {
-                            width: 480,
+                            width: "30rem",
                         },
                     }}
                 >
@@ -141,8 +139,8 @@ const Friends = () => {
                             sx={{
                                 backgroundColor: "#fff",
                                 border: "1px solid #ccc",
-                                borderRadius: 1,
-                                height: 200,
+                                borderRadius: "0.25rem",
+                                height: "12.5rem",
                                 overflowY: "scroll",
                                 animation: "fadeIn 0.5s  ease-in-out",
                                 "@keyframes fadeIn": {
@@ -176,7 +174,7 @@ const Friends = () => {
                     </DialogContent>
                     <DialogActions
                         sx={{
-                            px: 2,
+                            px: "1rem",
                         }}
                     >
                         <StyledButton onClick={handleClose}>Close</StyledButton>
@@ -187,9 +185,9 @@ const Friends = () => {
                         display: "flex",
                         backgroundColor: "#fff",
                         alignItems: "center",
-                        borderRadius: 1.5,
-                        p: "4px 12px",
-                        mt: 2,
+                        borderRadius: "0.375rem",
+                        p: "0.25rem 0.75rem",
+                        mt: "1rem",
                     }}
                 >
                     <SearchOutlinedIcon color='action' />
@@ -199,7 +197,7 @@ const Friends = () => {
                         value={searchFriend}
                         onChange={(e) => setSearchFriend(e.target.value)}
                         sx={{
-                            paddingLeft: 1.5,
+                            paddingLeft: "0.75rem",
                         }}
                     />
                 </Box>
@@ -207,7 +205,7 @@ const Friends = () => {
             <Box
                 className='chatvia-unScrollBar'
                 sx={{
-                    mx: 3,
+                    mx: "1.5rem",
                     flexGrow: 1,
                     overflowY: "scroll",
                 }}
@@ -219,23 +217,7 @@ const Friends = () => {
                             .includes(searchFriend.toLowerCase()),
                     )
                     .map((friend) => (
-                        <MuiMenuItem
-                            key={friend.id}
-                            sx={{
-                                my: 0.5,
-                                py: 1.5,
-                                borderRadius: 2,
-                            }}
-                        >
-                            <ActiveStatus
-                                sx={{
-                                    mr: 1.5,
-                                }}
-                            >
-                                <Avatar alt='' src={friend.avatar} />
-                            </ActiveStatus>
-                            {friend.name}
-                        </MuiMenuItem>
+                        <FriendItem key={friend.id} value={friend} />
                     ))}
             </Box>
         </>
