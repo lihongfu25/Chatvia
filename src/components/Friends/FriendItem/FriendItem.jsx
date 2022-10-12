@@ -9,6 +9,11 @@ import {
     MenuItem,
     ListItemIcon,
     ListItemText,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Button,
 } from "@mui/material";
 import BlockRoundedIcon from "@mui/icons-material/BlockRounded";
 import PersonRemoveRoundedIcon from "@mui/icons-material/PersonRemoveRounded";
@@ -17,10 +22,20 @@ import { ActiveStatus } from "../../ActiveStatus";
 const FriendItem = ({ value }) => {
     const isActive = useSelector((state) => state.activeStatus.isActive);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [openDialog, setOpenDialog] = React.useState(false);
+    const [dialogTitle, setDialogTitle] = React.useState("");
+
     const handleOpenMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleCloseMenu = () => {
+    const handleOpenDialog = (e) => {
+        if (e.target.innerText === "Unfriend")
+            setDialogTitle("Unfriend this person?");
+        else setDialogTitle("Block this person?");
+        setOpenDialog(true);
+    };
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
         setAnchorEl(null);
     };
     return (
@@ -30,7 +45,7 @@ const FriendItem = ({ value }) => {
                 my: "0.25rem",
                 py: "0.75rem",
                 pl: "0.75rem",
-                borderRadius: 2,
+                borderRadius: "0.5rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -73,7 +88,7 @@ const FriendItem = ({ value }) => {
             <Menu
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
-                onClose={handleCloseMenu}
+                onClose={() => setAnchorEl(null)}
                 sx={{
                     ".css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper":
                         {
@@ -82,7 +97,7 @@ const FriendItem = ({ value }) => {
                 }}
             >
                 <MenuItem
-                    onClick={handleCloseMenu}
+                    onClick={handleOpenDialog}
                     className='primary-text-color'
                 >
                     <ListItemIcon
@@ -97,7 +112,7 @@ const FriendItem = ({ value }) => {
                     <ListItemText
                         sx={{
                             "& span": {
-                                fontSize: "0.9rem",
+                                fontSize: "0.875rem",
                             },
                         }}
                     >
@@ -105,7 +120,7 @@ const FriendItem = ({ value }) => {
                     </ListItemText>
                 </MenuItem>
                 <MenuItem
-                    onClick={handleCloseMenu}
+                    onClick={handleOpenDialog}
                     className='primary-text-color'
                 >
                     <ListItemIcon
@@ -120,7 +135,7 @@ const FriendItem = ({ value }) => {
                     <ListItemText
                         sx={{
                             "& span": {
-                                fontSize: "0.9rem",
+                                fontSize: "0.875rem",
                             },
                         }}
                     >
@@ -128,8 +143,26 @@ const FriendItem = ({ value }) => {
                     </ListItemText>
                 </MenuItem>
             </Menu>
+            <Dialog
+                sx={{
+                    maxWidth: "30rem",
+                    margin: "auto",
+                }}
+                open={openDialog}
+                onClose={() => setOpenDialog(false)}
+            >
+                <DialogTitle>{dialogTitle}</DialogTitle>
+                <DialogContent>
+                    This action cannot be undone, are you sure you want to
+                    continue?
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDialog}>Agree</Button>
+                    <Button onClick={handleCloseDialog}>Cancel</Button>
+                </DialogActions>
+            </Dialog>
         </Box>
     );
 };
 
-export default FriendItem;
+export default React.memo(FriendItem);

@@ -59,22 +59,22 @@ const getCurTime = () => {
 };
 
 const StyledSwitch = styled(Switch)(({ theme }) => ({
-    width: 28,
-    height: 16,
+    width: "1.75rem",
+    height: "1rem",
     padding: 0,
     display: "flex",
     "&:active": {
         "& .MuiSwitch-thumb": {
-            width: 15,
+            width: "0.9375rem",
         },
         "& .MuiSwitch-switchBase.Mui-checked": {
-            transform: "translateX(9px)",
+            transform: "translateX(0.5625rem)",
         },
     },
     "& .MuiSwitch-switchBase": {
-        padding: 2,
+        padding: "0.125rem",
         "&.Mui-checked": {
-            transform: "translateX(12px)",
+            transform: "translateX(0.75rem)",
             color: "#fff",
             "& + .MuiSwitch-track": {
                 opacity: 1,
@@ -84,16 +84,16 @@ const StyledSwitch = styled(Switch)(({ theme }) => ({
         },
     },
     "& .MuiSwitch-thumb": {
-        boxShadow: "0 2px 4px 0 rgb(0 35 11 / 20%)",
-        width: 12,
-        height: 12,
-        borderRadius: 6,
+        boxShadow: "0 0.125rem 0.25rem 0 rgb(0 35 11 / 20%)",
+        width: "0.75rem",
+        height: "0.75rem",
+        borderRadius: "0.375rem",
         transition: theme.transitions.create(["width"], {
             duration: 200,
         }),
     },
     "& .MuiSwitch-track": {
-        borderRadius: 16 / 2,
+        borderRadius: "0.5rem",
         opacity: 1,
         backgroundColor:
             theme.palette.mode === "dark"
@@ -215,7 +215,7 @@ const Profile = () => {
         <>
             <Box
                 sx={{
-                    p: 3,
+                    p: "1.5rem",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
@@ -244,10 +244,10 @@ const Profile = () => {
                         left: -201,
                         ".css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper":
                             {
-                                minWidth: "220px",
+                                minWidth: "13.75rem",
                             },
                         "& .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root": {
-                            fontSize: "16px",
+                            fontSize: "1rem",
                         },
                     }}
                 >
@@ -275,14 +275,14 @@ const Profile = () => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    marginBottom: 3,
+                    marginBottom: "1.5rem",
                 }}
             >
                 <Box
                     sx={{
                         "& img": {
-                            width: 100,
-                            height: 100,
+                            width: "6.25rem",
+                            height: "6.25rem",
                             borderRadius: "50%",
                         },
                     }}
@@ -293,7 +293,7 @@ const Profile = () => {
                     variant='h6'
                     className='primary-text-color'
                     sx={{
-                        marginTop: 1,
+                        marginTop: "0.5rem",
                     }}
                 >
                     Lê Hồng Phú
@@ -312,7 +312,7 @@ const Profile = () => {
                             }}
                             sx={{
                                 "& .css-dd6pjh-MuiBadge-badge": {
-                                    left: -16,
+                                    left: "-1rem",
                                     top: "50%",
                                     transform: "translateY(-50%)",
                                 },
@@ -328,10 +328,10 @@ const Profile = () => {
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                             sx={{
-                                width: 160,
+                                width: "10rem",
                                 ".css-1x51dt5-MuiInputBase-input-MuiInput-input":
                                     {
-                                        paddingLeft: 1.5,
+                                        paddingLeft: "0.75rem",
                                     },
                             }}
                         />
@@ -343,13 +343,13 @@ const Profile = () => {
             <Divider />
             <Box
                 sx={{
-                    p: 3,
+                    p: "1.5rem",
                 }}
             >
                 <p
                     className='primary-text-color'
                     style={{
-                        margin: "0 0 20px",
+                        margin: "0 0 1.25rem",
                     }}
                 >
                     This is simply a pseudocode, in fact you can change it
@@ -367,14 +367,14 @@ const Profile = () => {
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography
                             sx={{
-                                fontSize: 15,
+                                fontSize: "0.9375rem",
                                 display: "flex",
                             }}
                         >
                             <PersonRoundedIcon
                                 fontSize='small'
                                 sx={{
-                                    marginRight: 1,
+                                    marginRight: "0.5rem",
                                 }}
                             />
                             About
@@ -414,9 +414,9 @@ const Profile = () => {
                                     ).length !== 0
                                 }
                                 sx={{
-                                    padding: "2px 16px",
+                                    padding: "0.125rem 1rem",
                                     textTransform: "none",
-                                    marginLeft: 29,
+                                    marginLeft: "1.875rem",
                                 }}
                             >
                                 Save

@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Typography, Box, Button, FormControlLabel, Checkbox } from "@mui/material";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import {
+    Typography,
+    Box,
+    Button,
+    FormControlLabel,
+    Checkbox,
+} from "@mui/material";
+import { BsPerson, BsLock } from "react-icons/bs";
+
 import { InputField } from "../../components/InputField";
 
 const Login = () => {
@@ -20,8 +26,8 @@ const Login = () => {
                 variant='h6'
                 className='primary-text-color'
                 sx={{
-                    fontSize: "21px",
-                    marginBottom: 0.5,
+                    fontSize: "1.3125rem",
+                    marginBottom: "0.25rem",
                 }}
             >
                 Sign in
@@ -30,34 +36,51 @@ const Login = () => {
                 paragraph
                 className='action-text-color'
                 sx={{
-                    fontSize: "15px",
-                    marginBottom: 3,
+                    fontSize: "0.9375rem",
+                    marginBottom: "1.5rem",
                 }}
             >
                 Sign in to continue to Chatvia.
             </Typography>
-            <Box component='form' sx={{ width: "inherit", boxSizing: "border-box", backgroundColor: "#fff", p: 5, borderRadius: 1.5, position: "relative" }}>
+            <Box
+                component='form'
+                sx={{
+                    width: "inherit",
+                    boxSizing: "border-box",
+                    backgroundColor: "#fff",
+                    p: 5,
+                    borderRadius: "0.375rem",
+                    position: "relative",
+                }}
+            >
                 <InputField
                     id='username'
-                    icon={PersonOutlineOutlinedIcon}
+                    icon={BsPerson}
                     label='Username'
                     placeholder='Enter Email'
                     value={username}
                     handleChange={setUsername}
                 />
-                <InputField id='password' icon={LockOutlinedIcon} label='Password' placeholder='Enter Password' value={password} handleChange={setPassword} />
+                <InputField
+                    id='password'
+                    icon={BsLock}
+                    label='Password'
+                    placeholder='Enter Password'
+                    value={password}
+                    handleChange={setPassword}
+                />
                 <FormControlLabel
                     className='primary-text-color'
                     control={<Checkbox size='small' />}
                     label='Remember me'
                     fontSize='small'
                     sx={{
-                        marginBottom: "10px",
+                        marginBottom: "0.625rem",
                         "& .css-ahj2mt-MuiTypography-root": {
-                            fontSize: 15,
+                            fontSize: "0.9375rem",
                         },
                         "& .css-ptiqhd-MuiSvgIcon-root": {
-                            fontSize: 18,
+                            fontSize: "1.125rem",
                         },
                     }}
                 />
@@ -69,7 +92,7 @@ const Login = () => {
                     disableElevation
                     onClick={handleSubmit}
                     sx={{
-                        p: "8px 16px",
+                        p: "0.5rem 1rem",
                         backgroundColor: "#7269ef",
                         "&:hover": {
                             backgroundColor: "#6159cb",
@@ -82,18 +105,27 @@ const Login = () => {
                     to='/forget-password'
                     className='action-text-color chatvia-link'
                     style={{
-                        fontSize: 14,
+                        fontSize: "0.875rem",
                         position: "absolute",
-                        top: 125,
-                        right: 40,
+                        top: "7.8125rem",
+                        right: "2.5rem",
                     }}
                 >
                     Forgot password?
                 </Link>
             </Box>
-            <Typography className='primary-text-color' sx={{ fontSize: 15, marginTop: 4 }}>
+            <Typography
+                className='primary-text-color'
+                sx={{
+                    fontSize: "0.9375rem",
+                    marginTop: "2rem",
+                }}
+            >
                 Don't have an account ?{" "}
-                <Link to='/register' className='secondary-text-color chatvia-link'>
+                <Link
+                    to='/register'
+                    className='secondary-text-color chatvia-link'
+                >
                     Signup now
                 </Link>
             </Typography>

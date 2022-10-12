@@ -11,8 +11,8 @@ const Conversation = ({ name, senderId, message, time, seen }) => {
             sx={{
                 display: "flex",
                 alignItems: "center",
-                p: 1.5,
-                borderRadius: 1.5,
+                p: "0.75rem",
+                borderRadius: "0.75rem",
                 cursor: "pointer",
                 ":hover": {
                     backgroundColor: "#e6ebf5",
@@ -23,14 +23,14 @@ const Conversation = ({ name, senderId, message, time, seen }) => {
             {isActive && (
                 <ActiveStatus
                     sx={{
-                        top: 14,
-                        left: -6,
+                        top: "0.875rem",
+                        left: "-0.375rem",
                     }}
                 ></ActiveStatus>
             )}
             <Box
                 sx={{
-                    ml: 2,
+                    ml: "1rem",
                     flexGrow: 1,
                     overflowX: "hidden",
                 }}
@@ -39,7 +39,7 @@ const Conversation = ({ name, senderId, message, time, seen }) => {
                     variant='h6'
                     className='primary-text-color'
                     sx={{
-                        fontSize: 16,
+                        fontSize: "1rem",
                     }}
                 >
                     {name}
@@ -50,7 +50,7 @@ const Conversation = ({ name, senderId, message, time, seen }) => {
                         !seen ? "secondary-text-color" : "action-text-color"
                     }
                     sx={{
-                        fontSize: 14,
+                        fontSize: "0.875rem",
                         m: 0,
                         whiteSpace: "nowrap",
                     }}
@@ -63,8 +63,8 @@ const Conversation = ({ name, senderId, message, time, seen }) => {
                 className='action-text-color'
                 paragraph
                 sx={{
-                    ml: 1.5,
-                    fontSize: 12,
+                    ml: "0.75rem",
+                    fontSize: "0.75rem",
                 }}
             >
                 {time}

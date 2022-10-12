@@ -6,10 +6,10 @@ const GroupConversation = ({ name }) => {
             sx={{
                 display: "flex",
                 alignItems: "center",
-                py: 1.5,
-                px: 2,
-                my: 1,
-                borderRadius: 2,
+                py: "0.75rem",
+                px: "1rem",
+                my: "0.5rem",
+                borderRadius: "0.5rem",
                 boxSizing: "border-box",
                 ":hover": {
                     backgroundColor: "#e6ebf5",
@@ -23,12 +23,12 @@ const GroupConversation = ({ name }) => {
                     display: "inline-flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    width: 36,
-                    height: 36,
+                    width: "2.25rem",
+                    height: "2.25rem",
                     borderRadius: "50%",
-                    fontSize: 18,
+                    fontSize: "1.125rem",
                     backgroundColor: "#d4d3f8",
-                    mr: 2,
+                    mr: "1rem",
                 }}
             >
                 {name[0]}
@@ -38,9 +38,9 @@ const GroupConversation = ({ name }) => {
                 className='primary-text-color'
                 sx={{
                     whiteSpace: "nowrap",
-                    maxWidth: 248,
+                    maxWidth: "15.5rem",
                     overflowX: "hidden",
-                    fontSize: 15,
+                    fontSize: "0.9375rem",
                 }}
             >
                 #{name}
@@ -49,4 +49,4 @@ const GroupConversation = ({ name }) => {
     );
 };
 
-export default GroupConversation;
+export default React.memo(GroupConversation);

@@ -12,10 +12,10 @@ const MenuItem = ({ value }) => {
     return (
         <Box
             sx={{
-                my: 0.5,
-                px: 1.5,
-                py: 1,
-                borderRadius: 2,
+                my: "0.25rem",
+                px: "0.75rem",
+                py: "0.5rem",
+                borderRadius: "0.5rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -34,7 +34,7 @@ const MenuItem = ({ value }) => {
                     alt=''
                     src={value.avatar}
                     sx={{
-                        mr: 1.5,
+                        mr: "0.75rem",
                     }}
                 />
                 {value.name}
@@ -42,8 +42,8 @@ const MenuItem = ({ value }) => {
             <Button
                 onClick={handleAddFriend}
                 sx={{
-                    fontSize: 10,
-                    py: 0.25,
+                    fontSize: "0.625rem",
+                    py: "0.125rem",
                     color: "#7269ef",
                     border: "1px dashed #7269ef",
                     ":hover": {
@@ -57,4 +57,4 @@ const MenuItem = ({ value }) => {
     );
 };
 
-export default MenuItem;
+export default React.memo(MenuItem);

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Typography, Box, Button } from "@mui/material";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import { BsEnvelope } from "react-icons/bs";
 import { InputField } from "../../components/InputField";
 
 const ForgetPassword = () => {
@@ -18,8 +18,8 @@ const ForgetPassword = () => {
                 variant='h6'
                 className='primary-text-color'
                 sx={{
-                    fontSize: "21px",
-                    marginBottom: 0.5,
+                    fontSize: "1.3125rem",
+                    marginBottom: "0.25rem",
                 }}
             >
                 Reset Password
@@ -28,8 +28,8 @@ const ForgetPassword = () => {
                 paragraph
                 className='action-text-color'
                 sx={{
-                    fontSize: "15px",
-                    marginBottom: 3,
+                    fontSize: "0.9375rem",
+                    marginBottom: "1.5rem",
                 }}
             >
                 Reset Password With Chatvia.
@@ -40,8 +40,8 @@ const ForgetPassword = () => {
                     width: "inherit",
                     boxSizing: "border-box",
                     backgroundColor: "#fff",
-                    p: 5,
-                    borderRadius: 1.5,
+                    p: "2.5rem",
+                    borderRadius: "0.375rem",
                 }}
             >
                 <Typography
@@ -50,9 +50,9 @@ const ForgetPassword = () => {
                         color: "#048060",
                         backgroundColor: "#cdf7ec",
                         border: "1px solid #b6f3e4",
-                        borderRadius: 0.5,
-                        p: "8px 16px",
-                        marginBottom: 2.5,
+                        borderRadius: "0.125rem",
+                        p: "0.5rem 1rem",
+                        marginBottom: "1.25rem",
                     }}
                 >
                     {!send
@@ -61,7 +61,7 @@ const ForgetPassword = () => {
                 </Typography>
                 <InputField
                     id='email'
-                    icon={EmailOutlinedIcon}
+                    icon={BsEnvelope}
                     label='Email'
                     placeholder='Enter Email'
                     value={email}
@@ -75,8 +75,8 @@ const ForgetPassword = () => {
                     disableElevation
                     onClick={handleSubmit}
                     sx={{
-                        p: "8px 16px",
-                        marginTop: 1.5,
+                        p: "0.5rem 1rem",
+                        marginTop: "0.75rem",
                         backgroundColor: "#7269ef",
                         "&:hover": {
                             backgroundColor: "#6159cb",
@@ -88,7 +88,7 @@ const ForgetPassword = () => {
             </Box>
             <Typography
                 className='primary-text-color'
-                sx={{ fontSize: 15, marginTop: 4 }}
+                sx={{ fontSize: "0.9375rem", marginTop: "2rem" }}
             >
                 Remember It ?{" "}
                 <Link to='/login' className='secondary-text-color chatvia-link'>

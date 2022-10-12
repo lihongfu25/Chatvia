@@ -5,7 +5,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { PrimaryButton } from "../PrimaryButton";
 
 const StyledButton = styled(PrimaryButton)({
-    padding: "2px 16px",
+    padding: "0.125rem 1rem",
     textTransform: "none",
     boxShadow: "none",
 });
@@ -55,7 +55,7 @@ const Input = ({ value = "", label, isEdit, onSubmit, setEditing }) => {
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
-                marginBottom: 1.5,
+                marginBottom: "0.75rem",
             }}
         >
             <label className='action-text-color' htmlFor={label}>
@@ -67,8 +67,8 @@ const Input = ({ value = "", label, isEdit, onSubmit, setEditing }) => {
                     className='primary-text-color'
                     id={label}
                     style={{
-                        margin: "4px 0 0",
-                        lineHeight: "32px",
+                        margin: "0.25rem 0 0",
+                        lineHeight: "2rem",
                     }}
                 >
                     {inputValue}
@@ -94,10 +94,10 @@ const Input = ({ value = "", label, isEdit, onSubmit, setEditing }) => {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         sx={{
-                            marginTop: 0.5,
+                            marginTop: "0.25rem",
                             backgroundColor: "#f1f1f1",
                             ".css-yz9k0d-MuiInputBase-input": {
-                                paddingLeft: 1.5,
+                                paddingLeft: "0.75rem",
                             },
                         }}
                     />
@@ -105,13 +105,13 @@ const Input = ({ value = "", label, isEdit, onSubmit, setEditing }) => {
                         sx={{
                             display: "flex",
                             justifyContent: "flex-end",
-                            marginTop: 1,
+                            marginTop: "0.5rem",
                         }}
                     >
                         <StyledButton
                             onClick={handleSubmit}
                             sx={{
-                                marginRight: 1,
+                                marginRight: "0.5rem",
                             }}
                         >
                             Save

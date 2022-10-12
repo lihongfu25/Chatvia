@@ -1,27 +1,21 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
 import {
     Box,
     Menu,
+    MenuItem,
+    ListItemIcon,
+    ListItemText,
     Dialog,
     DialogTitle,
     DialogContent,
     DialogContentText,
     DialogActions,
     Button,
-    Typography,
 } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-
-const StyledTypography = styled(Typography)({
-    margin: 0,
-    padding: "4px 16px ",
-    minWidth: 80,
-    ":hover": {
-        backgroundColor: "#f1f1f1",
-    },
-});
-
+import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import ForwardRoundedIcon from "@mui/icons-material/ForwardRounded";
 const MessageContent = ({ content, time }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openDeleteForm, setOpenDeleteForm] = React.useState(false);
@@ -57,23 +51,87 @@ const MessageContent = ({ content, time }) => {
                 open={Boolean(anchorEl)}
                 onClose={() => setAnchorEl(null)}
                 sx={{
-                    "& .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root": {
-                        fontSize: "14px",
-                    },
+                    ".css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper":
+                        {
+                            width: "10rem",
+                        },
                 }}
             >
-                <StyledTypography paragraph onClick={handleOpenDeleteForm}>
-                    Delete
-                </StyledTypography>
-                <StyledTypography paragraph onClick={() => setAnchorEl(null)}>
-                    Forward
-                </StyledTypography>
+                <MenuItem
+                    onClick={() => setAnchorEl(null)}
+                    className='primary-text-color'
+                >
+                    <ListItemIcon
+                        sx={{
+                            "& svg": {
+                                fontSize: "1.25rem",
+                            },
+                        }}
+                    >
+                        <ContentCopyRoundedIcon size='small' />
+                    </ListItemIcon>
+                    <ListItemText
+                        sx={{
+                            "& span": {
+                                fontSize: "0.875rem",
+                            },
+                        }}
+                    >
+                        Copy
+                    </ListItemText>
+                </MenuItem>
+                <MenuItem
+                    onClick={handleOpenDeleteForm}
+                    className='primary-text-color'
+                >
+                    <ListItemIcon
+                        sx={{
+                            "& svg": {
+                                fontSize: "1.25rem",
+                            },
+                        }}
+                    >
+                        <DeleteRoundedIcon size='small' />
+                    </ListItemIcon>
+                    <ListItemText
+                        sx={{
+                            "& span": {
+                                fontSize: "0.875rem",
+                            },
+                        }}
+                    >
+                        Delete
+                    </ListItemText>
+                </MenuItem>
+                <MenuItem
+                    onClick={() => setAnchorEl(null)}
+                    className='primary-text-color'
+                >
+                    <ListItemIcon
+                        sx={{
+                            "& svg": {
+                                fontSize: "1.25rem",
+                            },
+                        }}
+                    >
+                        <ForwardRoundedIcon size='small' />
+                    </ListItemIcon>
+                    <ListItemText
+                        sx={{
+                            "& span": {
+                                fontSize: "0.875rem",
+                            },
+                        }}
+                    >
+                        Forward
+                    </ListItemText>
+                </MenuItem>
             </Menu>
             <Dialog
                 open={openDeleteForm}
                 onClose={handleCloseDeleteForm}
                 sx={{
-                    maxWidth: 400,
+                    maxWidth: "30rem",
                     margin: "auto",
                 }}
             >
@@ -93,4 +151,4 @@ const MessageContent = ({ content, time }) => {
     );
 };
 
-export default MessageContent;
+export default React.memo(MessageContent);

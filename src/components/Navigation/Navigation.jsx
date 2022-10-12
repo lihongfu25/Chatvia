@@ -52,7 +52,9 @@ const Navigation = () => {
                 <img
                     src='http://chatvia-dark.react.themesbrand.com/static/media/logo.e41f6087382055646c1c02d0a63583d5.svg'
                     alt='logo'
-                    width={30}
+                    style={{
+                        width: "1.875rem",
+                    }}
                 />
             </ButtonBase>
             <Box
@@ -91,14 +93,17 @@ const Navigation = () => {
                     icon={currentMode === "light" ? BsMoonStarsFill : BsSunFill}
                     onClick={handleChangeMode}
                     sx={{
-                        marginBottom: 3,
+                        marginBottom: "1.5rem",
                     }}
                 />
                 <ButtonBase disableRipple>
                     <Avatar
                         alt=''
                         src={avatar}
-                        sx={{ width: 36, height: 36 }}
+                        sx={{
+                            width: "2.25rem",
+                            height: "2.25rem",
+                        }}
                     />
                 </ButtonBase>
             </Box>

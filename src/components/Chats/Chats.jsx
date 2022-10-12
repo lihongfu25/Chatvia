@@ -26,7 +26,7 @@ const Chats = () => {
     const [search, setSearch] = React.useState("");
     return (
         <>
-            <Box sx={{ p: 3 }}>
+            <Box sx={{ p: "1.5rem" }}>
                 <Typography variant='h6' className='primary-text-color'>
                     Chats
                 </Typography>
@@ -35,9 +35,9 @@ const Chats = () => {
                         display: "flex",
                         backgroundColor: "#fff",
                         alignItems: "center",
-                        p: "4px 12px",
-                        borderRadius: 1.5,
-                        marginTop: 2,
+                        p: "0.25rem 0.75rem",
+                        borderRadius: "0.375rem",
+                        marginTop: "1rem",
                     }}
                 >
                     <SearchOutlinedIcon color='action' />
@@ -47,14 +47,14 @@ const Chats = () => {
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         sx={{
-                            paddingLeft: 1.5,
+                            paddingLeft: "0.75rem",
                         }}
                     />
                 </Box>
             </Box>
             <Box
                 sx={{
-                    px: 1.5,
+                    px: "0.75rem",
                     display: "flex",
                     flexDirection: "column",
                     height: "100%",
@@ -64,8 +64,8 @@ const Chats = () => {
                     variant='h6'
                     className='primary-text-color'
                     sx={{
-                        fontSize: 16,
-                        px: 1.5,
+                        fontSize: "1rem",
+                        px: "0.75rem",
                     }}
                 >
                     Recent

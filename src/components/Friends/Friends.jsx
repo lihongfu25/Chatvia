@@ -104,7 +104,7 @@ const Friends = () => {
                                 p: 0,
                                 color: "#7F8487",
                                 ":hover": {
-                                    backgroundColor: "#fff",
+                                    backgroundColor: "inherit",
                                 },
                             }}
                             onClick={() => setOpenAddFriend(true)}

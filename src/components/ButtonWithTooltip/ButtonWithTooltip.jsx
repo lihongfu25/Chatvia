@@ -14,10 +14,10 @@ const ButtonWithTooltip = ({
         <ButtonBase
             className={className}
             sx={{
-                fontSize: 30,
-                p: 1.5,
-                margin: "4px 0",
-                borderRadius: 3,
+                fontSize: "1.875rem",
+                p: "0.75rem",
+                margin: "0.25rem 0",
+                borderRadius: "0.75rem",
                 position: "relative",
                 "&:hover .tooltip": {
                     display: "block",

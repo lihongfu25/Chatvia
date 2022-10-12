@@ -7,7 +7,6 @@ import {
     Divider,
     Typography,
     IconButton,
-    Button,
     InputBase,
     Tooltip,
 } from "@mui/material";
@@ -30,13 +29,13 @@ import avatar from "../../assets/img/DSC_0036-1.jpg";
 const StyledInput = styled(InputBase)({
     width: "100%",
     backgroundColor: "#f1f1f1",
-    borderRadius: 0.5,
+    borderRadius: "0.125rem",
     "& .MuiInputBase-input": {
-        padding: "8px 12px",
+        padding: "0.5rem 0.75rem",
     },
 });
 const StyledIconButton = styled(IconButton)({
-    margin: "0 4px",
+    margin: "0 0.25rem",
 });
 
 const StyledButton = styled(PrimaryButton)({
@@ -213,7 +212,7 @@ const ChatBox = () => {
         >
             <Box
                 sx={{
-                    p: 3,
+                    p: "1.5rem",
                     display: "flex",
                     justifyContent: "space-between",
                     position: "relative",
@@ -228,13 +227,13 @@ const ChatBox = () => {
                     <Avatar
                         src={avatar}
                         alt=''
-                        sx={{ width: 36, height: 36 }}
+                        sx={{ width: "2.25rem", height: "2.25rem" }}
                     />
                     <Typography
                         className='primary-text-color'
                         paragraph
                         sx={{
-                            margin: "0 0 0 16px",
+                            margin: "0 0 0 1rem",
                             fontWeight: "500",
                         }}
                     >
@@ -244,7 +243,7 @@ const ChatBox = () => {
                         <ActiveStatus
                             isRipple={true}
                             sx={{
-                                marginLeft: 1.5,
+                                marginLeft: "0.75rem",
                             }}
                             variant='dot'
                         ></ActiveStatus>
@@ -260,12 +259,12 @@ const ChatBox = () => {
                             sx={{
                                 display: "flex",
                                 position: "absolute",
-                                top: 80,
-                                left: 20,
-                                right: 20,
-                                p: "8px 12px",
+                                top: "5rem",
+                                left: "1.25rem",
+                                right: "1.25rem",
+                                p: "0.5rem 0.75rem",
                                 boxShadow: "0 1px 3px 1px #eaeaea",
-                                borderRadius: 1,
+                                borderRadius: "0.25rem",
                                 backgroundColor: "#fff",
                                 zIndex: 10,
                             }}
@@ -277,7 +276,7 @@ const ChatBox = () => {
                                 onChange={(e) => setSearch(e.target.value)}
                                 sx={{
                                     backgroundColor: "#f9f9f9",
-                                    marginRight: 1,
+                                    marginRight: "0.5rem",
                                 }}
                             />
                             <StyledButton>Find</StyledButton>
@@ -324,7 +323,7 @@ const ChatBox = () => {
             <Divider />
             <Box
                 sx={{
-                    p: 3,
+                    p: "1.5rem",
                     display: "flex",
                 }}
             >
@@ -333,7 +332,7 @@ const ChatBox = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     sx={{
-                        marginRight: 3,
+                        marginRight: "1.5rem",
                     }}
                 />
                 {funcBtns.map((funcBtn) => (
@@ -345,7 +344,7 @@ const ChatBox = () => {
                         <IconButton
                             disableRipple
                             sx={{
-                                margin: "0 5px",
+                                margin: "0 0.375rem",
                             }}
                         >
                             {funcBtn.icon}
@@ -356,8 +355,8 @@ const ChatBox = () => {
                     endIcon={<SendIcon />}
                     disableElevation
                     sx={{
-                        marginLeft: 1.5,
-                        minWidth: 100,
+                        marginLeft: "0.75rem",
+                        minWidth: "6.25rem",
                     }}
                 >
                     Send

@@ -122,7 +122,7 @@ const Groups = () => {
         <>
             <Box
                 sx={{
-                    p: 3,
+                    p: "1.5rem",
                 }}
             >
                 <Box
@@ -152,7 +152,7 @@ const Groups = () => {
                     onClose={handleClose}
                     sx={{
                         ".css-1t1j96h-MuiPaper-root-MuiDialog-paper": {
-                            width: 480,
+                            width: "30rem",
                         },
                     }}
                 >
@@ -173,17 +173,17 @@ const Groups = () => {
                                 searchMemberRef.current.firstChild.focus()
                             }
                             sx={{
-                                py: "7px",
-                                px: "14px",
+                                py: "0.4375rem",
+                                px: "0.875rem",
                                 border: "1px solid #ccc",
-                                borderRadius: 1,
-                                my: 1,
+                                borderRadius: "0.25rem",
+                                my: "0.5rem",
                             }}
                         >
                             <Typography
                                 className='action-text-color'
                                 sx={{
-                                    pr: 1.5,
+                                    pr: "0.75rem",
                                     display: "inline-block",
                                 }}
                             >
@@ -195,15 +195,15 @@ const Groups = () => {
                                     sx={{
                                         display: "inline-flex",
                                         alignItems: "center",
-                                        py: 0.5,
-                                        px: 1,
+                                        py: "0.25rem",
+                                        px: "0.5rem",
                                         backgroundColor:
                                             "rgba(114,105,239, 0.3)",
                                         color: "#7269ef",
-                                        borderRadius: 1,
-                                        mr: 1,
-                                        my: 0.25,
-                                        fontSize: 14,
+                                        borderRadius: "0.25rem",
+                                        mr: "0.75rem",
+                                        my: "0.125rem",
+                                        fontSize: "0.875rem",
                                     }}
                                 >
                                     {member.name}
@@ -213,7 +213,7 @@ const Groups = () => {
                                             handleRemoveMembers(member)
                                         }
                                         sx={{
-                                            ml: 1,
+                                            ml: "0.5rem",
                                             borderRadius: "50%",
                                             cursor: "pointer",
                                             ":hover": {
@@ -241,8 +241,8 @@ const Groups = () => {
                             sx={{
                                 backgroundColor: "#fff",
                                 border: "1px solid #ccc",
-                                borderRadius: 1,
-                                height: 150,
+                                borderRadius: "0.25rem",
+                                height: "10rem",
                                 overflowY: "scroll",
                                 animation: "fadeIn 0.5s  ease-in-out",
                                 "@keyframes fadeIn": {
@@ -289,9 +289,9 @@ const Groups = () => {
                                                 alt=''
                                                 src={friend.avatar}
                                                 sx={{
-                                                    width: 32,
-                                                    height: 32,
-                                                    mr: 1,
+                                                    width: "2rem",
+                                                    height: "2rem",
+                                                    mr: "0.5rem",
                                                 }}
                                             />
                                             {friend.name}
@@ -302,7 +302,7 @@ const Groups = () => {
                     </DialogContent>
                     <DialogActions
                         sx={{
-                            px: 2,
+                            px: "1rem",
                         }}
                     >
                         <StyledButton onClick={handleClose}>
@@ -318,9 +318,9 @@ const Groups = () => {
                         display: "flex",
                         backgroundColor: "#fff",
                         alignItems: "center",
-                        borderRadius: 1.5,
-                        p: "4px 12px",
-                        mt: 2,
+                        borderRadius: "0.375rem",
+                        p: "0.25rem 0.75rem",
+                        mt: "1rem",
                     }}
                 >
                     <SearchOutlinedIcon color='action' />
@@ -330,7 +330,7 @@ const Groups = () => {
                         value={searchGroup}
                         onChange={(e) => setSearchGroup(e.target.value)}
                         sx={{
-                            paddingLeft: 1.5,
+                            paddingLeft: "0.75rem",
                         }}
                     />
                 </Box>
@@ -339,7 +339,7 @@ const Groups = () => {
             <Box
                 className='chatvia-unScrollBar'
                 sx={{
-                    mx: 3,
+                    mx: "1.5rem",
                     flexGrow: 1,
                     overflowY: "scroll",
                 }}
