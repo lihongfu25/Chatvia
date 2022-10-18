@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
+import { BsPeopleFill } from "react-icons/bs";
 import {
     Box,
     Typography,
@@ -12,8 +13,8 @@ import {
     MenuItem,
     Avatar,
     Tooltip,
+    IconButton,
 } from "@mui/material";
-import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import { GroupConversation } from "./GroupConversation";
@@ -136,15 +137,19 @@ const Groups = () => {
                         Groups
                     </Typography>
                     <Tooltip title='Create group'>
-                        <GroupRoundedIcon
-                            onClick={() => {
-                                setOpenCreateGroup(true);
-                            }}
+                        <IconButton
+                            className='action-text-color'
                             sx={{
+                                p: 0,
                                 color: "#7F8487",
-                                cursor: "pointer",
+                                ":hover": {
+                                    backgroundColor: "inherit",
+                                },
                             }}
-                        />
+                            onClick={() => setOpenCreateGroup(true)}
+                        >
+                            <BsPeopleFill className='chatvia-icon-small' />
+                        </IconButton>
                     </Tooltip>
                 </Box>
                 <Dialog

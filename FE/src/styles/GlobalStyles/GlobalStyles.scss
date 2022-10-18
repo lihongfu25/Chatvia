@@ -1,11 +1,11 @@
 .primary-text-color {
     color: #495057 !important;
 }
-.secondary-text-color {
-    color: #7269ef !important;
-}
 .action-text-color {
     color: #7a7f9a !important;
+}
+.secondary-text-color {
+    color: #7269ef !important;
 }
 .primary-bg-color {
     background-color: #f5f7fb;
@@ -60,6 +60,15 @@
     right: 0;
     bottom: 0;
 }
+.chatvia-divider {
+    border-color: rgba(0, 0, 0, 0.12);
+}
+.chatvia-navBar-currentTab {
+    background-color: #f5f7fb !important;
+    & svg {
+        color: #7269ef !important;
+    }
+}
 .chatvia-navBar {
     display: flex;
     flex-direction: column;
@@ -67,8 +76,8 @@
     justify-content: space-between;
     width: 4.6875rem;
     padding: 1.25rem 0;
-    box-shadow: 0 0 3px 0.1px #ccc;
     background-color: #fff;
+    box-shadow: 0 0 3px 0.1px #ccc;
 }
 .chatvia-navBar-infor {
     width: 23.75rem;
@@ -78,18 +87,40 @@
     margin-bottom: 1.5rem;
     overflow: hidden;
 }
-.chatvia-navBar-currentTab {
-    background-color: #f5f7fb !important;
-    & svg {
-        color: #7269ef !important;
+//
+.chatvia-chatBox {
+    background-color: #fff;
+    .chatvia-chatBox-search {
+        background-color: #fff;
+        box-shadow: 0 1px 3px 1px #eaeaea;
+        input {
+            background-color: #f9f9f9;
+        }
+    }
+    .chatvia-chatBox-input {
+        background-color: #f1f1f1;
+        color: #495057;
+    }
+    .chatvia-chatBox-content {
+        padding: 1.25rem;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow-y: scroll;
     }
 }
-//
-.chatvia-chatBox-content {
-    padding: 1.25rem;
-    flex-direction: column;
-    flex-grow: 1;
-    overflow-y: scroll;
+.chatvia-emoji {
+    position: absolute;
+    bottom: 5rem;
+    right: 12rem;
+    animation: fadeIn 0.2s ease-in-out;
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 }
 .message {
     display: flex;

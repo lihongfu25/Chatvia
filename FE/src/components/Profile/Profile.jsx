@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { styled } from "@mui/material/styles";
 import {
     Box,
@@ -13,9 +14,9 @@ import {
     AccordionDetails,
     Input as MuiInput,
     Button,
+    IconButton,
     Tooltip,
 } from "@mui/material";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import { ActiveStatus } from "../ActiveStatus";
@@ -226,14 +227,18 @@ const Profile = () => {
                     Profile
                 </Typography>
                 <Tooltip title='More'>
-                    <MoreVertOutlinedIcon
-                        fontSize='small'
-                        className='primary-text-color'
-                        onClick={(e) => setAnchorEl(e.currentTarget)}
+                    <IconButton
                         sx={{
-                            cursor: "pointer",
+                            p: 0,
+                            color: "#7F8487",
+                            ":hover": {
+                                backgroundColor: "inherit",
+                            },
                         }}
-                    />
+                        onClick={(e) => setAnchorEl(e.currentTarget)}
+                    >
+                        <BsThreeDotsVertical className='chatvia-icon-small' />
+                    </IconButton>
                 </Tooltip>
 
                 <Menu

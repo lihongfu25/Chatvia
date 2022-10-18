@@ -37,6 +37,7 @@ const MenuItem = ({ value }) => {
                         mr: "0.75rem",
                     }}
                 />
+
                 {value.name}
             </Box>
             <Button

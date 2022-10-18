@@ -100,6 +100,7 @@ const Friends = () => {
                     </Typography>
                     <Tooltip title='Add friends'>
                         <IconButton
+                            className='action-text-color'
                             sx={{
                                 p: 0,
                                 color: "#7F8487",
@@ -109,7 +110,7 @@ const Friends = () => {
                             }}
                             onClick={() => setOpenAddFriend(true)}
                         >
-                            <BsPersonPlusFill />
+                            <BsPersonPlusFill className='chatvia-icon-small' />
                         </IconButton>
                     </Tooltip>
                 </Box>

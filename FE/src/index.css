@@ -10,3 +10,8 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+@media (min-width: 740px) and (max-width: 1023px) {
+    html {
+        font-size: 62.5%;
+    }
+}

@@ -8,7 +8,6 @@ import {
     Typography,
     IconButton,
     InputBase,
-    Tooltip,
 } from "@mui/material";
 import {
     BsSearch,
@@ -16,13 +15,15 @@ import {
     BsCameraVideoFill,
     BsPersonFill,
     BsThreeDots,
+    BsEmojiSmile,
+    BsFileImage,
 } from "react-icons/bs";
-import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
-import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
-import PhotoSizeSelectActualOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActualOutlined";
+import EmojiPicker from "emoji-picker-react";
 import { Message } from "../Message";
 import { ActiveStatus } from "../ActiveStatus";
 import { PrimaryButton } from "../PrimaryButton";
+import { ButtonWithTooltip } from "../ButtonWithTooltip";
+import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import SendIcon from "@mui/icons-material/Send";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
 
@@ -46,20 +47,10 @@ const StyledButton = styled(PrimaryButton)({
     },
 });
 
-const funcBtns = [
-    {
-        value: "Emoji",
-        icon: <SentimentSatisfiedOutlinedIcon />,
-    },
-    {
-        value: "Attached File",
-        icon: <AttachFileOutlinedIcon />,
-    },
-    {
-        value: "Images",
-        icon: <PhotoSizeSelectActualOutlinedIcon />,
-    },
-];
+const StyledButtonTooltip = styled(ButtonWithTooltip)({
+    padding: 0,
+    margin: "0 0.5rem",
+});
 
 const messages = [
     {
@@ -200,11 +191,30 @@ const ChatBox = () => {
     const [openSearch, setOpenSearch] = React.useState(false);
     const [search, setSearch] = React.useState("");
     const [message, setMessage] = React.useState("");
+    const [picker, setPicker] = React.useState(false);
+
+    React.useEffect(() => {
+        const handleClosePicker = (e) => {
+            const emojiContainer =
+                e.target.closest(".chatvia-emoji") ||
+                e.target.closest(".pick-emoji");
+            if (!emojiContainer) setPicker(false);
+        };
+        if (picker) window.addEventListener("click", handleClosePicker);
+
+        return () => {
+            window.removeEventListener("click", handleClosePicker);
+        };
+    }, [picker]);
+
+    const onEmojiClick = (e, emojiObject) => {
+        setMessage((prev) => prev + emojiObject.emoji);
+    };
 
     return (
         <Box
+            className='chatvia-chatBox'
             sx={{
-                backgroundColor: "#fff",
                 display: "flex",
                 flexDirection: "column",
                 flexGrow: 1,
@@ -256,6 +266,7 @@ const ChatBox = () => {
                 >
                     {openSearch && (
                         <Box
+                            className='chatvia-chatBox-search'
                             sx={{
                                 display: "flex",
                                 position: "absolute",
@@ -263,19 +274,17 @@ const ChatBox = () => {
                                 left: "1.25rem",
                                 right: "1.25rem",
                                 p: "0.5rem 0.75rem",
-                                boxShadow: "0 1px 3px 1px #eaeaea",
                                 borderRadius: "0.25rem",
-                                backgroundColor: "#fff",
                                 zIndex: 10,
                             }}
                         >
                             <StyledInput
+                                className='primary-text-color'
                                 autoFocus
                                 placeholder='Search'
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 sx={{
-                                    backgroundColor: "#f9f9f9",
                                     marginRight: "0.5rem",
                                 }}
                             />
@@ -294,23 +303,23 @@ const ChatBox = () => {
                     <StyledIconButton
                         onClick={() => setOpenSearch((prev) => !prev)}
                     >
-                        <BsSearch className='chatvia-icon-small' />
+                        <BsSearch className='chatvia-icon-small action-text-color' />
                     </StyledIconButton>
                     <StyledIconButton>
-                        <BsTelephoneFill className='chatvia-icon-small' />
+                        <BsTelephoneFill className='chatvia-icon-small action-text-color' />
                     </StyledIconButton>
                     <StyledIconButton>
-                        <BsCameraVideoFill className='chatvia-icon-small' />
+                        <BsCameraVideoFill className='chatvia-icon-small action-text-color' />
                     </StyledIconButton>
                     <StyledIconButton>
-                        <BsPersonFill className='chatvia-icon-small' />
+                        <BsPersonFill className='chatvia-icon-small action-text-color' />
                     </StyledIconButton>
                     <StyledIconButton>
-                        <BsThreeDots className='chatvia-icon-small' />
+                        <BsThreeDots className='chatvia-icon-small action-text-color' />
                     </StyledIconButton>
                 </Box>
             </Box>
-            <Divider />
+            <Divider className='chatvia-divider' />
             <Box className='chatvia-chatBox-content chatvia-unScrollBar'>
                 {messages.map((message, i) => (
                     <Message
@@ -320,7 +329,7 @@ const ChatBox = () => {
                     />
                 ))}
             </Box>
-            <Divider />
+            <Divider className='chatvia-divider' />
             <Box
                 sx={{
                     p: "1.5rem",
@@ -328,6 +337,7 @@ const ChatBox = () => {
                 }}
             >
                 <StyledInput
+                    className='chatvia-chatBox-input'
                     placeholder='Enter your message'
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -335,22 +345,28 @@ const ChatBox = () => {
                         marginRight: "1.5rem",
                     }}
                 />
-                {funcBtns.map((funcBtn) => (
-                    <Tooltip
-                        title={funcBtn.value}
-                        placement='top'
-                        key={funcBtn.value}
-                    >
-                        <IconButton
-                            disableRipple
-                            sx={{
-                                margin: "0 0.375rem",
-                            }}
-                        >
-                            {funcBtn.icon}
-                        </IconButton>
-                    </Tooltip>
-                ))}
+                <StyledButtonTooltip
+                    className='pick-emoji'
+                    value='Emoji'
+                    icon={BsEmojiSmile}
+                    placement='top'
+                    onClick={() => setPicker((prevState) => !prevState)}
+                />
+                {picker && (
+                    <Box className='chatvia-emoji'>
+                        <EmojiPicker onEmojiClick={onEmojiClick} />
+                    </Box>
+                )}
+                <StyledButtonTooltip
+                    value='Files'
+                    icon={AttachFileOutlinedIcon}
+                    placement='top'
+                />
+                <StyledButtonTooltip
+                    value='Images'
+                    icon={BsFileImage}
+                    placement='top'
+                />
                 <PrimaryButton
                     endIcon={<SendIcon />}
                     disableElevation

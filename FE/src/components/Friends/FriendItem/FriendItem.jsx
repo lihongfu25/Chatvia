@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { styled } from "@mui/material/styles";
 import {
     Box,
     Avatar,
@@ -13,11 +14,19 @@ import {
     DialogTitle,
     DialogContent,
     DialogActions,
-    Button,
 } from "@mui/material";
 import BlockRoundedIcon from "@mui/icons-material/BlockRounded";
 import PersonRemoveRoundedIcon from "@mui/icons-material/PersonRemoveRounded";
 import { ActiveStatus } from "../../ActiveStatus";
+import { PrimaryButton } from "../../PrimaryButton";
+
+const StyledButton = styled(PrimaryButton)({
+    color: "#7269ef",
+    backgroundColor: "#fff",
+    ":hover": {
+        backgroundColor: "#f9f9f9",
+    },
+});
 
 const FriendItem = ({ value }) => {
     const isActive = useSelector((state) => state.activeStatus.isActive);
@@ -54,7 +63,7 @@ const FriendItem = ({ value }) => {
                 },
             }}
         >
-            <Box>
+            <Box className='primary-text-color'>
                 {isActive ? (
                     <ActiveStatus
                         sx={{
@@ -75,6 +84,7 @@ const FriendItem = ({ value }) => {
                 {value.name}
             </Box>
             <IconButton
+                className='primary-text-color'
                 size='small'
                 onClick={handleOpenMenu}
                 sx={{
@@ -157,8 +167,12 @@ const FriendItem = ({ value }) => {
                     continue?
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseDialog}>Agree</Button>
-                    <Button onClick={handleCloseDialog}>Cancel</Button>
+                    <StyledButton onClick={handleCloseDialog}>
+                        Agree
+                    </StyledButton>
+                    <StyledButton onClick={handleCloseDialog}>
+                        Cancel
+                    </StyledButton>
                 </DialogActions>
             </Dialog>
         </Box>

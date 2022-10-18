@@ -4,14 +4,11 @@ import {
     BsChatSquareTextFill,
     BsPeopleFill,
     BsPersonLinesFill,
-    BsMoonStarsFill,
-    BsSunFill,
 } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { Avatar, Box, ButtonBase } from "@mui/material";
 import { ButtonWithTooltip } from "../ButtonWithTooltip";
-import { navigationChange } from "../Navigation/navigationSlice";
-import { modeChange } from "../../redux/store/modeSlice";
+import { navigationChange } from "./navigationSlice";
 import avatar from "../../assets/img/DSC_0036-1.jpg";
 
 const navButtons = [
@@ -35,15 +32,11 @@ const navButtons = [
 
 const Navigation = () => {
     const currentTab = useSelector((state) => state.navigation.currentTab);
-    const currentMode = useSelector((state) => state.mode.currentMode);
 
     const dispatch = useDispatch();
 
     const handleChangeNavBar = (value) => {
         dispatch(navigationChange(value));
-    };
-    const handleChangeMode = () => {
-        dispatch(modeChange());
     };
 
     return (
@@ -88,14 +81,6 @@ const Navigation = () => {
                         },
                 }}
             >
-                <ButtonWithTooltip
-                    value='Dark/ Light Mode'
-                    icon={currentMode === "light" ? BsMoonStarsFill : BsSunFill}
-                    onClick={handleChangeMode}
-                    sx={{
-                        marginBottom: "1.5rem",
-                    }}
-                />
                 <ButtonBase disableRipple>
                     <Avatar
                         alt=''

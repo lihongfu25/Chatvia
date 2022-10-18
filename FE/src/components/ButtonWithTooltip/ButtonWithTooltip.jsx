@@ -26,7 +26,7 @@ const ButtonWithTooltip = ({
             }}
             onClick={onClick}
         >
-            <Icon className='chatvia-icon-medium' />
+            <Icon className='chatvia-icon-medium action-text-color' />
             <Paper
                 className={`tooltip placement-${placement}`}
                 elevation={1}
